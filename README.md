@@ -50,6 +50,7 @@ Explore the evidence and methods:
 - [Methodology](docs/METHODOLOGY.md)
 - [Limitations](docs/LIMITATIONS.md)
 - [Research flow](docs/RESEARCH_FLOW.md)
+- [New-target equal-operand study preregistration](docs/PREREGISTRATION.md) (frozen before new-target scoring)
 - [Audit trail](docs/Audit_Trail.md)
 - [Interactive research explorer](index.html)
 
