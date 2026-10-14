@@ -26,23 +26,22 @@
 ## The question
 What would it take to show that GPT-2 is adding—not just matching patterns?
 
-This project began by investigating a possible addition circuit in GPT-2 Small. As baselines, attribution methods, and causal controls were scrutinized, several early circuit interpretations weakened. The investigation then shifted toward a more specific observation: **a target-dependent advantage associated with equal operands.**
-
-The mechanism behind that effect remains an open question.
+This project began by asking whether GPT-2 Small uses an addition-specific circuit for short sums. Behavioral baselines, attribution corrections, and intervention controls narrowed that interpretation. The seven-target scan then showed a target-dependent contrast for equal-operand prompts. A 20-target analysis extended the same question to new sums. Its positive mean depends heavily on six round-number targets, and only 8/20 target contrasts are positive. The pattern is worth testing further, but it does not establish a general equal-operand effect or identify its mechanism.
 
 ## What the results show
 
 - **Weak zero-shot addition performance:** the recorded all-pairs evaluation achieved top-1 accuracy of 2/36. A separate held-out evaluation achieved 2/32, compared with 8/32 for its best constant-guess baseline.
 - **An equal-operand pattern:** the saved digit-plus-digit scores have a mean target-level advantage of +0.247 across seven sums (exact sign-flip p = 0.03125; 95% target-bootstrap interval [+0.0738, +0.4374]). The estimate is sensitive: a sign test gives p = 0.125, and excluding controls whose operands equal the target's neighboring values gives p = 0.125 across six eligible targets. Treat this as an exploratory pattern, not a robust or mechanistic finding. The digit+digit versus digit+word contrast has Holm p = 0.046875 within its three-comparison family and was not adjusted across all project analyses.
+- **A 20-target arithmetic analysis:** the mean contrast is +0.39392 (exact one-sided sign-flip p = 0.013618; stratified 95% interval [+0.09556, +0.71692]), but only 8/20 targets are positive. Three numerical thresholds pass; the 70% positive-target criterion fails. Selection used different seed and bins from the written plan; the target counts under its original bins are 8/6/6, and the saved prompt/control set includes fewer templates and splits. The post hoc round-number split is exploratory: six multiples of ten average +1.4313, while the other 14 targets average -0.0507.
 - **Operator comparison:** at target 8, the saved `and` (+0.321) and `then` (+0.344) advantages are at least as large as `plus` (+0.291). This is descriptive: the same sum token is scored for every string, and the paired tests do not detect a difference.
 - **No confirmed circuit:** candidate-component screens remain exploratory (two-sided FDR q = 0.150 across 12 nominated components); transfer effects are mixed, and the five-target discovery screen has limited p-value resolution.
-- **Corpus audit:** the archived no-floor summary has positive double-versus-control joint log ratios at all seven targets, but mixed conditional ratios. No association test was prespecified, so the relationship to the model effect remains unresolved.
+- **Corpus audit:** the seven-target joint log ratios are positive and conditional ratios are mixed. A post hoc Spearman analysis finds no detectable association with the equal-operand advantage (joint $\rho=+0.464$, $p=0.294$; conditional $\rho=-0.143$, $p=0.760$; $n=7$). This small, unprespecified analysis does not rule out a frequency contribution.
 
 These conclusions apply to the tested model, prompts, targets, and controls. They do not imply that GPT-2 Small lacks every arithmetic-related representation or computation.
 
 ## Follow the investigation
 
-**Circuit hypothesis → behavioral baselines → attribution audits → controlled comparisons → equal-operand effect → exploratory causal tests**
+**Circuit hypothesis → behavioral and token baselines → attribution and intervention audits → seven-target equal-operand scan → format/operator and corpus checks → 20-target extension → exploratory round-number pattern → bounded conclusion and next test**
 
 Explore the evidence and methods:
 
@@ -50,7 +49,7 @@ Explore the evidence and methods:
 - [Methodology](docs/METHODOLOGY.md)
 - [Limitations](docs/LIMITATIONS.md)
 - [Research flow](docs/RESEARCH_FLOW.md)
-- [New-target equal-operand study preregistration](docs/PREREGISTRATION.md) (frozen before new-target scoring)
+- [Pre-analysis plan and recorded outcome](docs/PREREGISTRATION.md)
 - [Audit trail](docs/Audit_Trail.md)
 - [Interactive research explorer](index.html)
 
@@ -82,7 +81,7 @@ Regenerate the committed static figures:
 python src/plot_heatmaps.py
 ```
 
-See the notebook, [current data exports](data/current/), [data manifest](data/MANIFEST.csv), and methodology for experimental details. The corpus scripts require network access to Infini-gram; archived raw responses permit inspection of the supplied query run.
+See the notebook, [current data exports](data/current/), [data manifest](data/MANIFEST.csv), and methodology for experimental details. Recompute the 20-target arithmetic summary from its stored prompt-level logits with `python src/analyze_preregistered_followup.py`. The corpus scripts require network access to Infini-gram; archived raw responses permit inspection of the query run.
 
 ## Project structure
 

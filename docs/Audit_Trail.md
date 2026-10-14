@@ -3,7 +3,7 @@ Methodological and code-audit history of the GPT-2 Small addition project.
 Each entry: Original, Problem, Correction, Effect on conclusion, Numbers.
 Entries focus on issues that affect result validity, interpretation, or unresolved evidence. Numbered identifiers are retained for cross-document references.
 Tags: [VERIFIED RESULT] [INTERPRETATION] [HYPOTHESIS] [LIMITATION].
-Project status: supplied clean-rerun exports and raw corpus logs are archived under `data/current/`; see A32 and the data manifest.
+Project status: analyzed outputs and raw corpus logs are archived under `data/current/`; see A32–A33 and the data manifest.
 ## A01. Direct Logit Attribution without final LayerNorm scaling
 - Original: component outputs from `get_full_resid_decomposition` projected directly onto W_U[:,target] − W_U[:,foil].
 - Problem: components are pre-LayerNorm; LN divides by σ of the full summed stream. Raw sums overshoot.
@@ -179,11 +179,11 @@ The earlier summary below is historical only. Its per-query response files were 
 - **Candidate screen:** `10_mlp_out`, L9H9, and L10H2 are exploratory candidates. The component DLA screen reports q_FDR = 0.513; the two-sided causal screen reports q_FDR = 0.150. Neither passes q < .05.
 - **Transfer and specificity:** At targets 8 and 14, joint ablation lowers the target-level advantage at 8 and raises it at 14. In the prospective range 24–36, the signed advantage change is negative at five targets and positive at two; clean contrasts at 26 and 34 are negative. This remains exploratory transfer, not confirmation. Filler prompts also show effects.
 - **Completeness:** The target-level completeness ratios vary from 0.54 to 1.54; the largest ratio occurs where the full effect is small. Do not summarize these ratios as a stable circuit-level removal fraction.
-- **Original corpus log status:** At the time of this record, raw per-request files were not part of the repository. The supplied raw CSV/JSONL and reconstructed no-floor summary are now archived under `data/current/` (A32). No eligibility floor or association test was applied to this export; prior correlation results are historical. See [CORPUS_AUDIT.md](CORPUS_AUDIT.md).
+- **Original corpus log status:** At the time of this record, raw per-request files were not part of the repository. The raw CSV/JSONL and reconstructed no-floor summary are now archived under `data/current/` (A32). No eligibility floor or association test had yet been applied to these records; later post hoc correlations are recorded in A33. See [CORPUS_AUDIT.md](CORPUS_AUDIT.md).
 
-## A32. Supplied clean-rerun exports integrated into canonical data
+## A32. Current analysis outputs integrated into canonical data
 - **Source:** Clean-rerun CSV/JSONL outputs. Canonical outputs are stored once under `data/current/`; row counts and SHA-256 digests are in `data/MANIFEST.csv`.
-- **Byte checks:** `doubles_scan_scores.csv` (39 rows) and `variance_scaling.csv` (21 rows) byte-match the existing canonical files. The two supplied final-summary aliases are identical and stored once. No experimental numbers were edited or merged.
+- **Byte checks:** `doubles_scan_scores.csv` (39 rows) and `variance_scaling.csv` (21 rows) byte-match the existing canonical files. The two final-summary aliases are identical and stored once. No experimental numbers were edited or merged.
 - **Primary equal-operand result:** Mean advantage +0.2473847 across seven target levels; exact target-level sign-flip p = 0.03125; 10,000-resample target bootstrap 95% percentile interval [+0.0738152, +0.4374255], seed 20261008. The effect-size ratio is descriptive. Interpretation is bounded to these seven target levels.
 - **Format inference:** Digit+digit versus digit+word paired difference −0.2189595, raw p = 0.015625, Holm p = 0.046875. Other format contrasts have Holm p = 0.21875. The contrast is target-level and does not establish general invariance.
 - **Operator inference:** Plus-versus-other paired Holm p = 0.6875 for each comparison. This is failure to detect a difference, not evidence of equivalence.
@@ -191,7 +191,14 @@ The earlier summary below is historical only. Its per-query response files were 
 - **Inference sensitivity added to manuscript:** The seven-target primary sign-flip result (mean +0.2473847, p = 0.03125) is accompanied by the sign test (6/7 positive, p = 0.125), leave-one-target-out tests (p = 0.03125 or 0.0625), and the neighbor-operand exclusion check (six eligible targets, mean +0.256077, exact sign-flip p = 0.125; target 4 has no retained controls). These checks are sensitivity analyses and do not change the saved measurements.
 - **Candidate-screen scope clarified:** The discovery cohort contains five targets; the FDR adjustment family contains 12 nominated components. The prospective transfer cohort is even targets 24, 26, 28, 30, 32, 34, and 36. Its selected-component results are exploratory and not independent confirmation.
 - **Corpus export:** Raw CSV and JSONL contain 79 request attempts, 0 errors, and 79 HTTP 200 responses. A seven-target no-floor summary is reconstructed from the raw log using notebook cell 147. Double joint counts exceed mean ordered-control joint counts for all seven targets; conditional log ratios vary in sign. No association test or eligibility floor was applied. Historical correlations remain historical and `ρ=+0.82, p=0.023` remains retracted.
-- **Scope:** The supplied output exports do not include every format/operator prompt score. The single-operand control remains untested. No data values were silently reconciled.
+- **Scope:** The archived output tables do not include every format/operator prompt score. The single-operand control remains untested. No data values were silently reconciled.
+
+## A33. Twenty-target arithmetic analysis added to the research sequence
+- **Source artifacts:** `data/current/preregistered_20_target_results.json` contains the analyzed prompt-level logits. `src/analyze_preregistered_followup.py` verifies saved margins against those logits, computes per-target arithmetic contrasts, enumerates sign-flip tests, and calculates the stratified bootstrap interval. The resulting 20-row target table is `data/current/preregistered_20_target_summary.csv`; checksums are listed in `data/MANIFEST.csv`.
+- **Primary arithmetic estimate:** Mean contrast +0.39392; stratified 95% interval [+0.09556, +0.71692]; exact one-sided sign-flip p = 0.013618 (two-sided p = 0.027235); 8/20 positive (40%). The mean, interval, and p-value criteria pass. The 70% breadth criterion fails, so the four criteria are not all met.
+- **Implementation relative to the written plan:** The saved target set uses seed 42 and revised target-bin ranges 38–56, 58–76, and 78–98. Under the plan's seed and bins (2026101201; 38–58, 60–78, 80–98), the selected targets fall 8/6/6. The saved scoring data contain one arithmetic template and one unequal split evaluated in both orders, rather than the three templates and up to six splits in the plan. Comma and natural-language prompts also differ from the planned controls. This analysis is reported as a continuation of the study, with those differences stated in Methods and limitations.
+- **Exploratory pattern:** The six selected targets divisible by ten average +1.4313; the other 14 average −0.0507. This post hoc subgroup is not a confirmatory finding and does not establish a frequency account.
+- **Corpus analysis update:** Across the seven original targets, the post hoc Spearman correlations between model advantage and joint log ratio (ρ = +0.464, p = 0.294) and conditional log ratio (ρ = −0.143, p = 0.760) remain exploratory. The earlier ρ = +0.82 result remains retracted.
 
 ## Summary of research-relevant corrections
 | Issue | Changed conclusion? |
@@ -206,5 +213,5 @@ The earlier summary below is historical only. Its per-query response files were 
 | A22 (invariance) | Yes (retired) |
 | A23, A24 (doubles design and tokenization) | Yes (v1 artifact retired; effect corroborated, not confirmed) |
 | A25 (M1) | Closed as a scoped limitation; cohort definitions separated |
-| A26, A30, and A32 (frequency) | Earlier ρ = +0.82 discarded; the 79-request raw log is archived; no association is reported and the relationship remains unresolved |
+| A26, A30, A32–A33 (frequency) | Earlier ρ = +0.82 discarded; the 79-request raw log is archived; post hoc seven-target correlations are reported as exploratory |
 | A04, A07–A10, A12–A13, A20, A29 | No change to the surviving claim; data-integrity limits retained |

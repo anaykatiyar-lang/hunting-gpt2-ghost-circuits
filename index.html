@@ -45,7 +45,8 @@
       <h2>What the evidence supports</h2>
       <div class="grid">
         <article><h3>Behavior</h3><p>On the tested cohorts, zero-shot top-1 accuracy was 2/36 and 2/32. The held-out constant guess scored 8/32.</p><p class="muted">Scoped to these prompts and cohorts.</p></article>
-        <article><h3>Equal-operand pattern</h3><p>The saved digit-addition scan reports a target-dependent preference, positive at 6/7 targets.</p><p class="muted">A measured behavioral pattern that motivates causal follow-up.</p></article>
+        <article><h3>Seven-target scan</h3><p>The mean equal-operand advantage is +0.247; six of seven target values are positive.</p><p class="muted">Sensitivity checks depend on the control definition.</p></article>
+        <article><h3>Twenty-target extension</h3><p>Mean contrast +0.394; exact one-sided sign-flip p = 0.0136. Only 8/20 target values are positive, so the 70% breadth criterion fails.</p><p class="muted">Selection bins and prompt/control counts differ from the written plan.</p></article>
         <article><h3>Candidate components</h3><p><code>10_mlp_out</code>, L9H9, and L10H2 are exploratory candidates.</p><p class="status">No confirmed circuit: DLA q=0.513; two-sided causal q=0.150.</p></article>
       </div>
       <p><a href="docs/FINDINGS.md">Open the full claims ledger</a> · <a href="docs/RESEARCH_FLOW.md">Read the experimental flow</a> · <a href="docs/LITERATURE_MAP.md">See how prior work is used</a></p>
@@ -60,11 +61,11 @@
         <span>prompt and parity map</span>
       </div>
       <div class="flow-line" aria-label="Research flow, second line">
-        <span><strong>Equal-operand effect:</strong> +0.247; exact sign-flip p = 0.03125; 6/7 targets positive</span><span class="flow-arrow" aria-hidden="true">→</span>
-        <span>boundary checks</span><span class="flow-arrow" aria-hidden="true">→</span>
-        <span>corpus audit</span><span class="flow-arrow" aria-hidden="true">→</span>
-        <span>no circuit established</span><span class="flow-arrow" aria-hidden="true">→</span>
-        <span>causal follow-up</span>
+        <span><strong>Seven-target scan:</strong> +0.247</span><span class="flow-arrow" aria-hidden="true">→</span>
+        <span>format/operator and corpus checks</span><span class="flow-arrow" aria-hidden="true">→</span>
+        <span><strong>Twenty-target extension:</strong> +0.394, 8/20 positive</span><span class="flow-arrow" aria-hidden="true">→</span>
+        <span>round-number pattern is exploratory</span><span class="flow-arrow" aria-hidden="true">→</span>
+        <span>no circuit established</span>
       </div>
       <p><a href="docs/RESEARCH_FLOW.md">See the detailed evidence table</a> · <a href="docs/LITERATURE_MAP.md">See how prior work informs the methods</a>.</p>
     </section>
@@ -83,7 +84,7 @@
         <tr><td>DLA omitted final LayerNorm scaling and a static bias term.</td><td>Corrected values change attribution magnitudes and reconcile selected token contrasts.</td></tr>
         <tr><td>Zero-ablation shifted residual scale.</td><td>Mean-ablation reduced the reported L11H0 shift from +0.0658 to +0.0013.</td></tr>
         <tr><td>Operator-position patch lacked a corrupt baseline.</td><td>“Operator binding falsified” is not established.</td></tr>
-        <tr><td>79 raw requests (0 errors); joint double/control log ratio is positive at all seven targets, with mixed conditional ratios.</td><td>Raw request/response records and the no-floor summary are available. No association test was applied; corpus-frequency relationship remains unresolved.</td></tr>
+        <tr><td>79 raw requests (0 errors); joint double/control log ratio is positive at all seven targets, with mixed conditional ratios.</td><td>Post hoc correlations are joint ρ = +0.464 (p = 0.294) and conditional ρ = −0.143 (p = 0.760), n = 7. They are exploratory and do not establish or rule out a frequency account.</td></tr>
       </tbody></table>
       <p><a href="docs/audits.md">Open the audit index</a> · <a href="docs/audit_trail.md">Read the canonical audit trail</a> · <a href="docs/LIMITATIONS.md">Review limitations</a></p>
     </section>
@@ -92,10 +93,11 @@
       <ul>
         <li><a href="notebooks/00_full_record.ipynb">Final full-record notebook</a> · <a href="notebooks/00_full_record.md">Markdown export</a></li>
         <li><a href="data/MANIFEST.csv">Data and provenance manifest</a></li>
+        <li><a href="data/current/preregistered_20_target_results.json">20-target prompt-level logits</a> · <a href="data/current/preregistered_20_target_summary.csv">per-target summary</a> · <a href="src/analyze_preregistered_followup.py">analysis script</a></li>
         <li><a href="docs/ENVIRONMENT.md">Recorded software environment</a></li>
         <li><a href="paper/draft_paper.md">Research draft</a></li>
       </ul>
-      <p class="muted">Clean-rerun outputs are archived in <code>data/current/</code>; the manifest records their row counts and SHA-256 digests. The notebook documents the corresponding analysis steps.</p>
+      <p class="muted">Analysis outputs are archived in <code>data/current/</code>; the manifest records their row counts and SHA-256 digests. The 20-target summary can be recalculated from the stored logits.</p>
     </section>
     <footer>Research draft · not peer reviewed · all claims are limited to the stated prompts, model, and controls.</footer>
   </main>

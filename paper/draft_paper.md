@@ -7,7 +7,7 @@ Independent Researcher
 
 ## Abstract
 
-We tested whether GPT-2 Small (124M parameters) uses a general addition-specific mechanism on simple decimal addition prompts. The evaluated suite does not establish such a mechanism: top-1 accuracy was 2/32 (6.25%) on the held-out zero-shot cohort, compared with 8/32 (25%) for its best constant guess. Across the 79-cell addition grid, parity predicted the sign of the measured logit difference in 68/79 cells, but the pattern was concentrated at sums ≤13 (63/64) and weak at sums ≥14 (5/15); cells share target sums and are not independent. A target-dependent equal-operand pattern is present in the saved digit-addition scores (mean advantage +0.2474 across seven targets; exact sign-flip p = 0.03125; 95% target-bootstrap interval [+0.0738, +0.4374]), but the estimate is sensitive to target and control choices: sign-test and neighbor-token exclusion p-values are both 0.125. Corrected attribution accounts for final LayerNorm scaling and unembedding bias. The archived raw corpus log contains 79 requests and no errors; its no-floor summary shows positive joint log ratios at all seven targets and mixed conditional ratios. No association test was run; earlier correlation summaries are historical and the corpus-frequency relationship remains unresolved. These results do not establish a universal operator-blind mechanism or the absence of arithmetic-related representations in GPT-2 Small.
+I tested whether GPT-2 Small (124M parameters) uses a general addition-specific mechanism on short decimal-addition prompts. The evaluated suite does not establish such a mechanism: held-out zero-shot top-1 accuracy was 2/32 (6.25%), compared with 8/32 (25%) for the best constant guess. In a 79-cell addition grid, parity predicted the sign of the logit contrast in 68/79 cells, but agreement varied by target range and cells share target sums. Across seven even sums, the mean equal-operand advantage was +0.2474 (exact sign-flip p = 0.03125; 95% target-bootstrap interval [+0.0738, +0.4374]); sign and neighbor-token exclusion checks give p = 0.125. A 20-target extension has mean arithmetic contrast +0.39392 (exact one-sided sign-flip p = 0.013618; stratified 95% interval [+0.09556, +0.71692]), but only 8/20 contrasts are positive, below the 70% breadth criterion. The executed target selection and prompt/control design differ from the written plan. A post hoc split shows a larger mean for six multiples of ten; it motivates further tests but does not establish a round-number or frequency mechanism. The archived corpus counts yield exploratory seven-target correlations (joint ρ = +0.464, p = 0.294; conditional ρ = −0.143, p = 0.760). Neither the corpus results nor the behavioral pattern identify an addition circuit.
 
 ---
 
@@ -15,14 +15,14 @@ We tested whether GPT-2 Small (124M parameters) uses a general addition-specific
 
 A central objective of mechanistic interpretability is reverse-engineering the neural circuits responsible for algorithmic reasoning in transformer language models (Elhage et al., 2021; Olsson et al., 2022; Wang et al., 2022). Arithmetic tasks—such as single-digit addition—have frequently served as model organisms for studying representation learning, numerical binding, and modular arithmetic circuits (Nanda et al., 2023; Zhong et al., 2023). In small, pretrained language models like GPT-2 Small (Radford et al., 2019), preliminary probing frequently suggests identifiable circuits: attention heads attending to operand tokens, late-layer multi-layer perceptrons (MLPs) promoting correct digits, and apparent head-level suppressors regulating logit outputs.
 
-Interpreting model internals without statistical controls and numerical error accounting carries substantial risk. We evaluated GPT-2 Small on prompts of the form `a + b =`. The supplied clean-rerun exports document the analyses; the raw corpus API response records are archived. Format and operator scores are exported as target-level summaries rather than complete prompt-level tables.
+Interpreting model internals without statistical controls and numerical error accounting carries substantial risk. I evaluated GPT-2 Small on prompts of the form `a + b =`. The analysis outputs and raw corpus API response records are archived. Format and operator scores are stored as target-level summaries rather than complete prompt-level tables.
 
 Our initial investigations appeared to support a structured heuristic addition pathway. Yet, systematic methodological auditing revealed that several headline observations were artifacts of:
 1. **Unscaled Direct Logit Attribution (DLA)**: Neglecting final LayerNorm scaling inflated the displayed component attributions. The raw/corrected pairs in Table 2 imply a factor near $19.2$; the broader $14\times$–$40\times$ range in earlier wording is not supported by those pairs.
 2. **Zero-Ablation Off-Distribution Shifts**: Forcing activation tensors to zero, which inflates residual stream standard deviation $\sigma$ from $19.20$ to $23.13$ and uniformly depresses all tracked logits by $\approx 1.0$, creating spurious "suppressor" heads.
 3. **Token Geometry and Parity Confounds**: Conflating task-specific computation with intrinsic token-level biases, such as numerical parity preferences and static unembedding biases ($b_U$).
 
-After these checks, a target-level equal-operand contrast remained. Exact sign-flip inference is nominally significant across the seven tested targets, while paired format comparisons show a difference between digit+digit and digit+word after Holm correction. Plus-versus-other operator comparisons do not detect a difference after correction, which is not evidence of equivalence. These results do not identify the mechanism or rule out broader operator-sensitive explanations.
+After these checks, a target-level equal-operand contrast remained. Exact sign-flip inference is nominally significant across the seven tested targets, while paired format comparisons show a difference between digit+digit and digit+word after Holm correction. Plus-versus-other operator comparisons do not detect a difference after correction, which is not evidence of equivalence. A later 20-target extension produced a positive mean but failed the planned breadth criterion. This pattern narrows the behavior worth investigating; it does not identify a mechanism or rule out broader operator-sensitive explanations.
 
 ---
 
@@ -32,7 +32,7 @@ This study asks whether GPT-2 Small's apparent preference for correct answers on
 
 The investigation began with an apparent addition-related signal. Correcting the attribution calculation changed its scale; separating the unembedding bias changed how some net outputs were interpreted; broader controls weakened several component-specific explanations. A target-dependent equal-operand advantage remained, but it also appeared under the tested non-addition operators and connectors. That result narrows the addition-specific interpretation without identifying the mechanism behind the remaining effect.
 
-The experimental order was: behavioral baseline, matched controls, token and unembedding baselines, corrected Direct Logit Attribution (DLA), candidate interventions, doubles comparison, operator and connector substitutions, and a corpus-proxy audit. The final causal validation step remains proposed work. The question, prediction, measurement, result, interpretation, limitation, and next step for each stage are summarized in [docs/RESEARCH_FLOW.md](../docs/RESEARCH_FLOW.md). The literature-to-claim and data-source map is in [docs/LITERATURE_MAP.md](../docs/LITERATURE_MAP.md); the detailed correction record is in [docs/Audit_Trail.md](../docs/Audit_Trail.md).
+The experimental order was: behavioral baseline, matched controls, token and unembedding baselines, corrected Direct Logit Attribution (DLA), candidate interventions, seven-target doubles comparison, operator and connector substitutions, corpus-proxy audit, and a 20-target arithmetic extension. The post hoc round-number pattern motivates a targeted next test; causal validation remains proposed work. The question, prediction, measurement, result, interpretation, limitation, and next step for each stage are summarized in [docs/RESEARCH_FLOW.md](../docs/RESEARCH_FLOW.md). The literature-to-claim and data-source map is in [docs/LITERATURE_MAP.md](../docs/LITERATURE_MAP.md); the detailed correction record is in [docs/Audit_Trail.md](../docs/Audit_Trail.md).
 
 The closest published comparison is Hanna et al.'s analysis of a different mathematical behavior in GPT-2 Small: greater-than prediction in year-like contexts. Work on trained modular-addition transformers supplies useful methodological and conceptual comparisons, but those settings differ from this pretrained decimal-addition benchmark. These sources motivate careful task definition and validation; they do not supply evidence for the measurements reported here.
 
@@ -97,7 +97,7 @@ When replaced with mean-ablation across seven reference prompts (four arithmetic
 
 ## 4. The Doubling Anomaly
 
-Because the tested benchmark provides no positive evidence for a general, reliably functioning addition mechanism, we examined structured patterns in the addition grid. The 79-row grid and 39-row digit+digit score file show a target-dependent equal-operand preference. The supplied exports add target-level inference and paired comparisons across formats/operators. Complete prompt-level formatted and operator score tables are not included.
+Because the tested benchmark provides no positive evidence for a general, reliably functioning addition mechanism, I examined structured patterns in the addition grid. The 79-row grid and 39-row digit+digit score file show a target-dependent equal-operand preference. The archived analysis outputs include target-level inference and paired comparisons across formats and operators. Complete prompt-level formatted and operator score tables are not included.
 
 ![Figure 1: 79-Cell Addition Grid Symmetric Logit Difference Heatmap](../figures/static/addition_grid_heatmap.svg)
 *Figure 1: Heatmap of symmetric logit differences across the 79 addition-grid rows. Parity sign agreement is 68/79 overall, 63/64 for sums ≤13, and 5/15 for sums ≥14 (0/9 for sums 14–15). Repeated target sums mean grid cells are not independent; the high-sum pattern differs from the lower-sum pattern.*
@@ -123,7 +123,13 @@ These digit+digit values can be recomputed from [`data/current/doubles_scan_scor
 
 Across the seven target-level advantages, the mean is +0.2474. The exact two-sided sign-flip test gives p = 0.03125, and a 10,000-resample target bootstrap (seed 20261008) gives a 95% percentile interval [+0.0738, +0.4374]. Six of seven targets are positive (two-sided sign test p = 0.125), leave-one-target-out sign-flip values are 0.03125 or 0.0625, and excluding controls with operands T−1 or T+1 leaves six targets with mean +0.2561 and p = 0.125. The inference unit is the target level; these results do not establish generalization beyond the tested grid.
 
-### 4.2 Invariance to Lexical and Format Variations
+### 4.2 Twenty-target extension
+
+I extended the analysis to 20 even target sums from 38 to 98 using one arithmetic template and one unequal split in both operand orders per target. The mean arithmetic contrast is +0.39392; the exact one-sided sign-flip test gives p = 0.013618 (two-sided p = 0.027235), and the stratified 95% bootstrap interval is [+0.09556, +0.71692]. Eight of 20 targets are positive (40%). The mean, interval, and p-value thresholds pass, but the required 70% positive-target criterion fails. The selection used seed 42 and target ranges 38–56, 58–76, and 78–98. Under the written plan's seed and original ranges (38–58, 60–78, and 80–98), the selected targets divide 8/6/6 rather than 7/6/7. The run also uses fewer arithmetic templates and unequal splits than planned, and its comma and natural-language controls differ from the planned conditions. I report this as a continuation of the research, while distinguishing the implemented analysis from all conditions in the written plan.
+
+After inspecting the results, I compared the six selected targets divisible by ten with the other 14. The six-target mean is +1.4313; the remaining targets average −0.0507, and only two are positive. This subgroup is post hoc and entangled with operand roundness. It is an exploratory pattern, not a confirmatory test or evidence of a frequency mechanism. The same descriptive split appears across alternate formats, which use the same targets and are not independent replications. The complete per-target scores and calculation script are archived in `data/current/` and `src/analyze_preregistered_followup.py`.
+
+### 4.3 Invariance to Lexical and Format Variations
 To test whether the doubling effect is driven by token-level repetition of identical surface strings, we evaluated cross-format variants: digit+word (`4 + four =`) and word+word (`four + four =`).
 
 **Table 4: Mean matched equal-operand advantage across all seven target levels.**
@@ -138,7 +144,7 @@ Paired comparisons use the seven matched target levels. Only digit+digit versus 
 
 ---
 
-### 4.3 Exploratory Candidate-Component Screen
+### 4.4 Exploratory Candidate-Component Screen
 
 The clean-rerun component screen uses discovery target sums 4, 6, 10, 12, and 16. It names `10_mlp_out`, L9H9, and L10H2 as candidates for follow-up, not as a confirmed circuit. The candidate adjustment family contains 12 components. For the nominated candidates, one-sided causal tests have raw p = 0.03125 but one-sided FDR q = 0.09375; two-sided FDR q = 0.15. With five discovery targets, the minimum one-sided exact p is 1/32 = 0.03125, so the screen has limited resolution and a null finding is compatible with low power. No nominated component passes q < 0.05.
 
@@ -169,7 +175,7 @@ We evaluated all double and control prompts across 5 operator configurations, tr
 | then | +0.3243 | 0.6875 |
 
 ### Operator inference and interpretation
-The supplied clean-rerun export contains matched target-level means for all five strings. Prompt-level operator scores are not included. The figure and table use those seven-target means, not the older aggregate adv/SD summary.
+The archived analysis contains matched target-level means for all five strings. Prompt-level operator scores are not included. The figure and table use those seven-target means, not the older aggregate adv/SD summary.
 
 At target 8, saved advantages for `and` (+0.321) and `then` (+0.344) equal or exceed plus (+0.291), a descriptive observation consistent with the effect not being addition-specific. The paired plus-versus-other comparisons have Holm-adjusted $p=0.6875$. This does not show that the conditions are equivalent, and the same arithmetic sum token is scored under every string. Operator-position patching (A19) is a separate experiment and does not validate or invalidate these comparisons.
 
@@ -177,13 +183,13 @@ At target 8, saved advantages for `and` (+0.321) and `then` (+0.344) equal or ex
 
 ## 6. Pretraining Corpus Frequency Audit
 
-The external corpus-frequency analysis is inconclusive. Sparse joint-query counts and the mismatch between the available proxy corpus and GPT-2's exact training distribution prevent strong conclusions about memorization. The results should therefore not be used either to establish or to rule out a memorization-based explanation.
+The external corpus-frequency analysis is exploratory. The proxy corpus and GPT-2's exact training distribution differ, which prevents strong conclusions about memorization. The results should not be used either to establish or to rule out a memorization-based explanation.
 
 We investigated whether the doubling anomaly is driven by verbatim co-occurrence frequencies in pretraining text. Using the Infini-gram API, we audited the open 3-trillion-token Dolma v1.7 corpus (`v4_dolma-v1_7_llama`) across all 7 target sums.
 
 **Methodological Retraction**: An early preliminary query indicated a correlation between joint prompt-answer counts and model advantage ($\rho = +0.82$, $p = 0.023$). Audit inspection revealed that query tokenization formatting had produced 0 joint matches for higher targets, collapsing the ratio into a prompt-frequency artifact.
 
-The supplied raw collector log contains 79 requests with zero errors and is archived in CSV and JSONL. The reconstructed no-floor summary shows positive joint log ratios at all seven targets and mixed conditional log ratios. The collector did not apply an eligibility floor or calculate a correlation. Earlier summaries ($\rho=+0.46$, $p=0.294$ for joint counts; $\rho=-0.14$, $p=0.760$ for conditional counts, $n=7$) remain historical. The earlier $\rho=+0.82$, $p=0.023$ remains retracted. Dolma is a proxy, not GPT-2's exact training corpus; the frequency relationship remains unresolved. See [the corpus audit](../docs/CORPUS_AUDIT.md).
+The archived raw collector log contains 79 requests with zero errors. The reconstructed no-floor summary shows positive joint log ratios at all seven targets and mixed conditional log ratios. A post hoc Spearman analysis gives $\rho=+0.464$ ($p=0.294$) for joint log ratio and model advantage and $\rho=-0.143$ ($p=0.760$) for the conditional measure ($n=7$). The sample is small and the analysis was not prespecified. The earlier $\rho=+0.82$, $p=0.023$ remains retracted. Dolma is a proxy, not GPT-2's exact training corpus; the frequency relationship remains unresolved. See [the corpus audit](../docs/CORPUS_AUDIT.md).
 
 ---
 
@@ -204,13 +210,13 @@ This investigation illustrates several safeguards for this task:
 
 ## 8. Conclusion
 
-The reported evaluation suite does not establish a general, reliably functioning addition mechanism in GPT-2 Small. Several early mechanistic interpretations were weakened after methodological corrections. A target-dependent equal-operand preference is present in the committed grid and prompt-level digit-addition scan; the operator and connector summaries persist across the tested strings but remain bounded to their design. The corpus audit provides no association test and no prespecified eligibility rule. The archived raw API logs are available, while full prompt-level format/operator scores and the single-operand control remain absent. These limits constrain further conclusions. These experiments do not establish the absence of arithmetic-related representations or operator-sensitive mechanisms elsewhere in the model.
+The reported evaluation suite does not establish a general, reliably functioning addition mechanism in GPT-2 Small. Several early mechanistic interpretations were narrowed after methodological corrections. The seven-target scan shows a target-dependent equal-operand contrast. The 20-target extension has a positive mean but fails the 70% breadth criterion, and its strongest contrast is concentrated in a post hoc subgroup of multiples of ten. The corpus correlations are exploratory and do not resolve a frequency account. Full prompt-level format/operator scores and the single-operand control remain absent. These limits constrain further conclusions; the results do not establish the absence of arithmetic-related representations or operator-sensitive mechanisms elsewhere in the model.
 
 ---
 
 ## AI Use Disclosure
 
-Claude Sonnet 5.5, ChatGPT, and Gemini 3.1 Pro assisted with literature exploration, code, and writing. The author checked the reported data, calculations, citations, and claims against available records, code, and cited sources. Some results cannot be independently regenerated from the available materials. The author made the final research decisions and is responsible for the data, analyses, claims, citations, and manuscript.
+I used Claude Sonnet 5.5, ChatGPT, Gemini 3.1 Pro, and Codex to explore literature, review and generate code, and edit the manuscript. I treated their suggestions as prompts for review, not as evidence. I checked the cited records against primary sources and checked reported quantities against analysis outputs. I take responsibility for the experiments, data, analysis, claims, citations, and final manuscript.
 
 ---
 

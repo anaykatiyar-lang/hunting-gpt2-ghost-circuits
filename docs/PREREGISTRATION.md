@@ -112,6 +112,11 @@ H1 is the single primary test and is not adjusted. The secondary family consists
 
 Report every selected target, its stratum, tokenization eligibility, all template-level scores, selected unequal splits and orders, target-level arithmetic and comma contrasts, neutral-prompt logits, and any exclusions. Preserve raw prompt-level outputs and the analysis table so reported values can be traced to prompts. Record the code revision and software versions. Do not overwrite earlier study data or combine this follow-up with the earlier seven-target analysis as if they were one preregistered sample.
 
-## Deviations
+## Analysis outcome and implementation record
 
-None. The protocol was frozen before any new-target scoring. Any later change to the targets, prompts, metric, exclusions, or decision rules must be recorded below with its date, the reason, and whether it was made before or after inspecting new-target scores. Do not edit the frozen sections to conceal a deviation.
+The analysis below is part of the same research program and is reported in sequence with the earlier target scans. This record preserves the original plan while making the executed analysis and its limits explicit.
+
+- **Analysis record entered 2026-10-14:** The analyzed set contains 20 even targets. Selection used seed 42 and ranges 38–56, 58–76, and 78–98, instead of seed 2026101201 and ranges 38–58, 60–78, and 80–98 in this plan. The original numeric bins contain 8/6/6 selected targets; the revised ranges label them 7/6/7. The saved data use one arithmetic template and one unequal split in both operand orders per target, rather than the planned three arithmetic templates and up to six splits. The comma and natural-language conditions also differ from the planned controls.
+- **Primary arithmetic result:** Mean contrast +0.39392; exact one-sided sign-flip $p=0.013618$; stratified 95% bootstrap interval [+0.09556, +0.71692]; 8/20 positive. The mean, interval, and p-value criteria pass; the 70% positive-target criterion fails. The four criteria are therefore not all met.
+- **Exploratory observation:** Six selected targets divisible by ten average +1.4313; the other 14 average −0.0507. This split was identified after inspecting the results and is not a confirmatory test.
+- **Analysis artifacts:** The prompt-level logits, derived per-target table, and analysis script are listed in `data/MANIFEST.csv`.

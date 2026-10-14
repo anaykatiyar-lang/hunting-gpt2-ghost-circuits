@@ -76,6 +76,14 @@ $$\text{adv}/\text{SD} = \frac{\overline{\text{Advantage}}}{s_{\text{pooled}}}$$
 
 The digit+digit primary result uses the seven even target levels as its inference units. The exact sign-flip test enumerates all $2^7$ sign assignments and uses a two-sided tail probability. The percentile bootstrap resamples the seven target-level advantages with replacement for 10,000 draws (seed 20261008). A neighbor-token sensitivity removes unequal controls containing either operand $T-1$ or $T+1$; target 4 then has no eligible controls, leaving six target contrasts. The format and operator comparisons pair values by target and apply Holm correction within the reported comparison families. The format-family p-value is not adjusted across all project analyses. These tests characterize the fixed target sets; they do not make prompt instances or target levels into independent model replications.
 
+### 3.5 Twenty-target new-sum analysis
+
+The later analysis evaluates the 20 listed even sums from 38 to 98 using one arithmetic prompt template and one unequal split in both operand orders per target. For each prompt, the score is the target-token logit minus the mean logits of the two numeric neighboring tokens. The target-level contrast subtracts the mean score of the two unequal orders from the equal-operand score. The script `src/analyze_preregistered_followup.py` verifies the saved margins against the stored logits, enumerates the exact one-sided and two-sided sign-flip tests, and computes a 10,000-resample stratified bootstrap interval (seed 2026101203).
+
+The observed mean is +0.39392; the exact one-sided sign-flip p-value is 0.013618, the two-sided value is 0.027235, and the stratified 95% interval is [+0.09556, +0.71692]. Eight of 20 contrasts are positive. The mean, interval, and p-value conditions pass, but the 70% positive-target condition does not. The actual selection used seed 42 and ranges 38–56, 58–76, and 78–98, rather than the plan's seed 2026101201 and ranges 38–58, 60–78, and 80–98. Under the written plan's numeric ranges, the selected targets fall 8/6/6; the stored 7/6/7 labels use the revised ranges. The evaluated data also have fewer arithmetic templates and unequal splits than planned. Accordingly, this is a new-target analysis conducted during the same research program, but not a full execution of every planned condition. See [`PREREGISTRATION.md`](PREREGISTRATION.md) for the original plan and its outcome record.
+
+The subgroup of six targets divisible by ten was identified after inspecting the results. Its mean contrast is +1.4313; the other 14 targets average −0.0507. This is an exploratory description, not a prespecified confirmatory test. The archived prompt-level JSON, derived per-target CSV, and analysis script are listed in [`data/MANIFEST.csv`](../data/MANIFEST.csv).
+
 ## 4. Mechanistic Attribution and Intervention Protocols
 
 ### 4.1 Mathematically Rigorous Direct Logit Attribution (DLA)
@@ -105,7 +113,7 @@ $$A_{l, h}[i, j] \leftarrow \frac{A_{l, h}[i, j]}{\sum_{k \ne 1} A_{l, h}[i, k]}
 ## 5. Operator and Corpus Comparisons
 
 ### 5.1 Operator-Swap Battery
-To test whether the reported equal-operand preference appears only with addition, addends are coupled via five strings: `+`, `−`, `×`, `and`, and `then`. The notebook defines Unicode multiplication and subtraction explicitly and uses ordered unequal splits; its saved summaries match the operator aggregate to rounding. Evaluation tracks logits on token $2d$. The supplied clean-rerun export contains seven target-level means for each operator with matched target rows. Paired target-level tests use Holm correction; plus-versus-other comparisons have adjusted p = 0.6875 throughout. These results do not establish operator equivalence or universal operator blindness. Prompt-level operator scores are not included, so prompt-level uncertainty cannot be reconstructed. The reported strings preserve the notebook Unicode forms.
+To test whether the reported equal-operand preference appears only with addition, addends are coupled via five strings: `+`, `−`, `×`, `and`, and `then`. The notebook defines Unicode multiplication and subtraction explicitly and uses ordered unequal splits; its saved summaries match the operator aggregate to rounding. Evaluation tracks logits on token $2d$. The archived analysis contains seven target-level means for each operator with matched target rows. Paired target-level tests use Holm correction; plus-versus-other comparisons have adjusted p = 0.6875 throughout. These results do not establish operator equivalence or universal operator blindness. Prompt-level operator scores are not included, so prompt-level uncertainty cannot be reconstructed. The reported strings preserve the notebook Unicode forms.
 
 ### 5.2 Corpus N-Gram Frequency Audit Protocol
 
@@ -113,8 +121,8 @@ The corpus analysis is intended as contextual evidence rather than a direct meas
 - **API**: Infini-gram (`https://api.infini-gram.io/`).
 - **Index**: `v4_dolma-v1_7_llama`. Corpus-size claims require a source citation and are not used here.
 - **Queries**: Joint exact string (`"a + b = T"`) and prompt prefix (`"a + b ="`).
-- **Historical summary**: Earlier joint and conditional Spearman values are historical and are not results of the archived raw-query log.
-- **Current raw export**: The supplied clean-rerun CSV/JSONL contains 79 logged requests and zero failures. Its seven-target summary is archived and derived from the query log using the notebook aggregation. No association test or eligibility floor was applied. See [CORPUS_AUDIT.md](CORPUS_AUDIT.md).
+- **Archived query records**: The CSV/JSONL contains 79 logged requests and zero failures. Its seven-target summary is derived from the query log using the notebook aggregation; no eligibility floor was applied.
+- **Exploratory association analysis**: A post hoc Spearman analysis across the seven target-level summaries gives joint $ρ=+0.464$ ($p=0.294$) and conditional $ρ=-0.143$ ($p=0.760$) against the seven-target equal-operand advantages. The analysis was not prespecified, has only seven target-level pairs, and does not rule out a frequency contribution. See [CORPUS_AUDIT.md](CORPUS_AUDIT.md).
 - **Reliability and scope**: The raw collector leaves the floor unapplied pending prespecification. Dolma is a proxy rather than GPT-2's exact training data, so these counts cannot establish or exclude broader memorization or distributional effects.
 
 
@@ -122,7 +130,7 @@ The corpus analysis is intended as contextual evidence rather than a direct meas
 
 ## 6. Research Flow and Evidence Labels
 
-The study's final reasoning path is behavioral baseline → matched controls → token and unembedding baselines → corrected DLA → candidate interventions → doubles comparison → operator/connector substitutions → corpus proxy audit. Causal validation of the surviving doubles effect remains proposed work, not a completed result. The full stage record uses the same fields at each step: question, prediction, measurement, result, interpretation, limitation, and next step. See [RESEARCH_FLOW.md](RESEARCH_FLOW.md).
+The study's reasoning path is behavioral baseline → matched controls → token and unembedding baselines → corrected DLA → candidate interventions → seven-target doubles comparison → operator/connector substitutions and corpus audit → 20-target arithmetic extension → exploratory round-number analysis. Causal validation of the observed target-dependent pattern remains proposed work, not a completed result. The full stage record uses the same fields at each step: question, prediction, measurement, result, interpretation, limitation, and next step. See [RESEARCH_FLOW.md](RESEARCH_FLOW.md).
 
 Use the labels consistently:
 - **[VERIFIED RESULT]** for a measurement tied to an available data artifact or explicitly reported audit result.
@@ -130,4 +138,4 @@ Use the labels consistently:
 - **[HYPOTHESIS]** for an untested proposed mechanism.
 - **[LIMITATION]** for scope, design, tokenization, corpus, or evidence boundaries.
 
-Literature is methodological context; it is not a source of this project's experimental values. For source-to-claim boundaries and the records for headline numbers, see [LITERATURE_MAP.md](LITERATURE_MAP.md). Cite [Audit_Trail.md](Audit_Trail.md) for the detailed correction record and verification status. The supplied clean-rerun CSV/JSONL exports are archived under `data/current/` and checksummed in `data/MANIFEST.csv`. Format and operator exports contain target-level summaries rather than every underlying prompt score; the individual corpus API request/response records are available.
+Literature is methodological context; it is not a source of this project's experimental values. For source-to-claim boundaries and the records for headline numbers, see [LITERATURE_MAP.md](LITERATURE_MAP.md). Cite [Audit_Trail.md](Audit_Trail.md) for the detailed correction record and verification status. Analyzed output files are archived under `data/current/` and checksummed in `data/MANIFEST.csv`. Format and operator exports contain target-level summaries rather than every underlying prompt score; the individual corpus API request/response records are available.

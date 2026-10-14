@@ -39,6 +39,8 @@ This document catalogs the exact scope limitations, tokenization artifacts, stat
    The primary mean is +0.2474 with exact sign-flip $p=0.03125$, but six of seven targets are positive (two-sided sign test $p=0.125$), leave-one-target-out sign-flip values are $0.03125$ or $0.0625$, and excluding unequal controls containing a target-neighbor operand leaves six targets with mean +0.2561 and $p=0.125$. The result is sensitive to the target/control definition and should be treated as exploratory.
 5. **Candidate-Screen Resolution**:
    The causal screen uses five discovery targets and adjusts over 12 nominated components. The minimum attainable one-sided exact sign-flip $p$ is $1/32=0.03125$ before family correction. Thus, failure to pass the FDR threshold does not distinguish no component effect from limited power.
+6. **Twenty-target analysis does not meet every decision criterion**:
+   The mean arithmetic contrast is +0.39392 (exact one-sided sign-flip $p=0.013618$; stratified 95% interval [+0.09556, +0.71692]), but only 8/20 targets are positive (40%), below the planned 70% breadth threshold. The actual target selection, bin boundaries, and number of prompt/control variants differ from the written plan. Under its original numeric bins, the target allocation is 8/6/6 rather than 7/6/7. The positive mean is concentrated in six multiples of ten (post hoc mean +1.4313 versus −0.0507 for the other 14). Because the subgroup was identified after inspecting the results, and target roundness is entangled with operand roundness in the equal prompts, this pattern is exploratory and does not establish a round-number or frequency mechanism.
 
 ---
 
@@ -53,6 +55,7 @@ This document catalogs the exact scope limitations, tokenization artifacts, stat
 3. **Easy-Tier Attention Blocking Mechanism**:
    Position-1 attention blocking produced a statistically significant reduction in target logit diff on Easy-tier prompts ($p = 0.0116$), but Medium-tier prompts showed no effect ($p = 0.724$). The exact internal mechanism mediating this difference remains unidentified.
 
+
 ---
 
 ## 5. Corpus Frequency Audit Boundaries
@@ -62,12 +65,12 @@ The external corpus-frequency analysis remains inconclusive. The seven-target co
 1. **Corpus Proxy Discrepancy**:
    Dolma v1.7 is used as a proxy for WebText. Because WebText is proprietary and unreleased, true pretraining co-occurrence statistics cannot be measured directly. The corpus-size figure is omitted until supported by a verified source.
 2. **Run distinction and analysis scope**:
-   The supplied clean-rerun CSV/JSONL logs contain 79 attempts with zero recorded failures; the seven-target no-floor summary is archived. The archived raw collection applies no eligibility floor and reports no association test, so the relationship between corpus counts and model effects remains unresolved; see [CORPUS_AUDIT.md](CORPUS_AUDIT.md) and audit A30 and A32.
+   The archived CSV/JSONL logs contain 79 attempts with zero recorded failures; the seven-target no-floor summary is archived. A post hoc Spearman analysis across those seven rows gives joint $\rho=+0.464$ ($p=0.294$) and conditional $\rho=-0.143$ ($p=0.760$) against equal-operand advantage. This small, unprespecified analysis does not establish or rule out a frequency relationship; see [CORPUS_AUDIT.md](CORPUS_AUDIT.md) and audit A30 and A32.
 3. **Run 1 Artifact Retraction**:
    An initial analysis reported a correlation ($\rho = +0.82$, $p = 0.023$) between corpus frequency and model advantage. The statistic was retracted after the audit identified a query-format artifact. It must not be used as a finding.
 
-4. **Earlier Exploratory Summary**:
-   A previous summary reported joint-count Spearman $\rho=+0.46$, $p=.294$, and conditional-count $\rho=-0.14$, $p=.760$ ($n=7$). These values remain historical and are not results of the archived raw-query log. Raw responses are now available, but an eligibility rule and association statistic were not prespecified or applied; the frequency relationship therefore remains unresolved.
+4. **Small corpus sample and query matching**:
+   The seven-target correlations are exploratory and underpowered. They use exact-match counts from a Dolma index tokenized with a different tokenizer from GPT-2. The first digit in the query does not carry a leading-space token boundary, so a match can include longer numbers ending in the queried digits. The correlations therefore do not directly measure GPT-2's training exposure.
 
 5. **Multi-Token Representation Limitation**: Some external arithmetic examples produce answers that do not correspond cleanly to a single GPT-2 token. Analyses that rely on `model.to_single_token` are restricted to examples whose target and foil representations satisfy the required single-token condition. Results from this restricted subset should not be generalized to arbitrary multi-token arithmetic answers.
 
@@ -82,7 +85,7 @@ The external corpus-frequency analysis remains inconclusive. The seven-target co
 
 The cited mechanistic studies use different tasks and, in several cases, different training regimes. They motivate questions about task definition, controls, and causal validation; they do not independently corroborate these measurements. Trained modular-addition transformers and GPT-2 Small greater-than results are not direct evidence about pretrained GPT-2 Small decimal addition. See [LITERATURE_MAP.md](LITERATURE_MAP.md) for source-specific scope.
 
-The supplied clean-rerun exports include the 39-row digit+digit score file, target-level format and operator tables, intervention results, and individual corpus API responses. Format/operator exports remain target-level summaries rather than all underlying prompt scores. The single-operand comparison remains untested. The M1 cohorts are distinct: all-pairs zero-shot is 2/36 (5.56%); held-out zero-shot is 2/32 (6.25%) with an 8/32 (25%) best-constant baseline; held-out few-shot is 2/32; the earlier few-shot 5/33 uses another prefix and exclusion set. See [Audit_Trail.md](Audit_Trail.md) for the detailed correction record.
+The archived results include the 39-row digit+digit score file, target-level format and operator tables, intervention results, the 20-target prompt-level logits, and individual corpus API responses. Format/operator exports remain target-level summaries rather than all underlying prompt scores. The single-operand comparison remains untested. The M1 cohorts are distinct: all-pairs zero-shot is 2/36 (5.56%); held-out zero-shot is 2/32 (6.25%) with an 8/32 (25%) best-constant baseline; held-out few-shot is 2/32; the earlier few-shot 5/33 uses another prefix and exclusion set. See [Audit_Trail.md](Audit_Trail.md) for the detailed correction record.
 
 ## 7. Unresolved Reproduction and Design Checks
 
