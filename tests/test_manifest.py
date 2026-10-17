@@ -6,6 +6,14 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = REPO_ROOT / "data" / "MANIFEST.csv"
+TEXT_EXTENSIONS = {".cff", ".csv", ".html", ".ipynb", ".json", ".jsonl", ".md", ".py", ".tex", ".txt", ".yml", ".yaml"}
+
+
+def artifact_sha256(path):
+    content = path.read_bytes()
+    if path.suffix.lower() in TEXT_EXTENSIONS:
+        content = content.replace(b"\r\n", b"\n")
+    return hashlib.sha256(content).hexdigest()
 
 
 class ManifestHashTests(unittest.TestCase):
@@ -25,7 +33,7 @@ class ManifestHashTests(unittest.TestCase):
 
             artifact = REPO_ROOT / record["file"]
             self.assertTrue(artifact.is_file(), f"missing manifest artifact: {record['file']}")
-            actual = hashlib.sha256(artifact.read_bytes()).hexdigest()
+            actual = artifact_sha256(artifact)
             self.assertEqual(actual, expected, f"hash mismatch: {record['file']}")
 
     def test_current_data_artifacts_are_manifested(self):
