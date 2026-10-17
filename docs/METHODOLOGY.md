@@ -84,6 +84,12 @@ The observed mean is +0.39392; the exact one-sided sign-flip p-value is 0.013618
 
 The subgroup of six targets divisible by ten was identified after inspecting the results. Its mean contrast is +1.4313; the other 14 targets average −0.0507. This is an exploratory description, not a prespecified confirmatory test. The archived prompt-level JSON, derived per-target CSV, and analysis script are listed in [`data/MANIFEST.csv`](../data/MANIFEST.csv).
 
+### 3.6 Exploratory 552-target class decomposition
+
+The later decomposition groups target-level equal-minus-unequal scores by target and equal-operand decimal structure. For each target, $A_T$ is the equal-prompt score minus the mean score across six unequal prompts. The archived JSON reports 552 targets, 3,864 prompt-score records, and recomputation checks for the equal arm, unequal arm, and $A_T$; the prompt-level input itself is not archived. The class contrast compares targets whose equal operand ends in 5 with non-round targets, adjusting for magnitude bands. The analysis reports heteroskedasticity-robust HC3 inference and a cluster-by-magnitude-band sensitivity analysis (43 bands); I emphasize the clustered interval and p-value as the more conservative summary.
+
+This decomposition is exploratory and is reported in sequence with the earlier analyses. It does not independently vary target roundness and operand ending: because $T=2a$, those labels are structurally linked. The unequal-control sets also differ in how often their operands end in 0 or 5. The derived output, script, and summary tables are archived in `data/current/roundness_exploratory/`. The script expects three source CSVs—target-level contrasts, prompt-level sequence scores, and the split manifest—that are not included, so the full calculation cannot currently be rerun from the repository alone.
+
 ## 4. Mechanistic Attribution and Intervention Protocols
 
 ### 4.1 Mathematically Rigorous Direct Logit Attribution (DLA)

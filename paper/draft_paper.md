@@ -7,7 +7,7 @@ Independent Researcher
 
 ## Abstract
 
-I tested whether GPT-2 Small (124M parameters) uses a general addition-specific mechanism on short decimal-addition prompts. The evaluated suite does not establish such a mechanism: held-out zero-shot top-1 accuracy was 2/32 (6.25%), compared with 8/32 (25%) for the best constant guess. In a 79-cell addition grid, parity predicted the sign of the logit contrast in 68/79 cells, but agreement varied by target range and cells share target sums. Across seven even sums, the mean equal-operand advantage was +0.2474 (exact sign-flip p = 0.03125; 95% target-bootstrap interval [+0.0738, +0.4374]); sign and neighbor-token exclusion checks give p = 0.125. A 20-target extension has mean arithmetic contrast +0.39392 (exact one-sided sign-flip p = 0.013618; stratified 95% interval [+0.09556, +0.71692]), but only 8/20 contrasts are positive, below the 70% breadth criterion. The executed target selection and prompt/control design differ from the written plan. A post hoc split shows a larger mean for six multiples of ten; it motivates further tests but does not establish a round-number or frequency mechanism. The archived corpus counts yield exploratory seven-target correlations (joint ρ = +0.464, p = 0.294; conditional ρ = −0.143, p = 0.760). Neither the corpus results nor the behavioral pattern identify an addition circuit.
+I tested whether GPT-2 Small (124M parameters) uses a general addition-specific mechanism on short decimal-addition prompts. The evaluated suite does not establish such a mechanism: held-out zero-shot top-1 accuracy was 2/32 (6.25%), compared with 8/32 (25%) for the best constant guess. In a 79-cell addition grid, parity predicted the sign of the logit contrast in 68/79 cells, but agreement varied by target range and cells share target sums. Across seven even sums, the mean equal-operand advantage was +0.2474 (exact sign-flip p = 0.03125; 95% target-bootstrap interval [+0.0738, +0.4374]); sign and neighbor-token exclusion checks give p = 0.125. A 20-target extension has mean arithmetic contrast +0.39392, but only 8/20 contrasts are positive, below the 70% breadth criterion. An exploratory decomposition of 552 target-level scores finds a +0.2930 logit-unit difference in equal-minus-unequal score for targets whose equal operand ends in 5 versus non-round targets (cluster-by-magnitude-band 95% interval [+0.1724, +0.4137]). Target class, operand ending, and unequal-control composition are linked in this design, so the result does not isolate a roundness effect or mechanism. The archived corpus counts yield exploratory seven-target correlations (joint ρ = +0.464, p = 0.294; conditional ρ = −0.143, p = 0.760). These results do not identify an addition circuit.
 
 ---
 
@@ -129,7 +129,17 @@ I extended the analysis to 20 even target sums from 38 to 98 using one arithmeti
 
 After inspecting the results, I compared the six selected targets divisible by ten with the other 14. The six-target mean is +1.4313; the remaining targets average −0.0507, and only two are positive. This subgroup is post hoc and entangled with operand roundness. It is an exploratory pattern, not a confirmatory test or evidence of a frequency mechanism. The same descriptive split appears across alternate formats, which use the same targets and are not independent replications. The complete per-target scores and calculation script are archived in `data/current/` and `src/analyze_preregistered_followup.py`.
 
-### 4.3 Invariance to Lexical and Format Variations
+### 4.3 Exploratory 552-target class decomposition
+
+A later exploratory decomposition reports 552 target-level contrasts and 3,864 prompt-level scores. Its JSON reports maximum recomputation differences of 2.22×10⁻¹⁶ for $A_T$ and 4.44×10⁻¹⁶ for each arm. I checked that the three archived summary tables agree with the corresponding JSON summaries; the prompt-level inputs needed to rerun the recomputation are not archived. Mean $A_T$ is +0.0347 for non-round targets ($n=276$), +0.3277 when the equal operand ends in 5 ($n=138$), and +0.1806 when it ends in 0 ($n=138$).
+
+The end-5 versus non-round contrast is +0.2930 logit units after magnitude-band adjustment (HC3 95% CI [+0.2289, +0.3572]). A cluster-by-magnitude-band sensitivity analysis across 43 bands gives a 95% CI of [+0.1724, +0.4137] and two-sided p = 1.47×10⁻⁵. I use the clustered interval as the more conservative uncertainty summary. It is still a sensitivity analysis, not a complete model of dependencies among targets.
+
+This comparison does not isolate target roundness. For equal operands, $T=2a$, so target roundness is tied to the equal operand's last digit: end-5 targets are divisible by 10 but not 20, while end-0 targets are divisible by 20. Non-round even targets cannot have equal operands ending in 0 or 5. The unequal controls also differ: both operands end in 0 or 5 for all end-0 controls, for about 10% of end-5 controls, and for none of the non-round controls. End-0 targets have higher mean equal scores than end-5 targets (+1.2841 vs. +0.6034), but their unequal-control baseline is higher still (+1.1035 vs. +0.2758), yielding a lower mean $A_T$ by 0.1471 (cluster-by-band 95% CI [−0.2241, −0.0701], p = 0.000390). This supports a baseline-shift description; it does not establish a ceiling effect or causal account.
+
+The decomposition is exploratory and the archived JSON labels it as outside the preregistered analysis. Digit-length, operand-parity, and individual last-digit results remain exploratory and do not identify a mechanism. The JSON, three summary tables, report, and analysis script are in `data/current/roundness_exploratory/`. The script requires three input CSVs—target contrasts, prompt-level scores, and split manifest—that are not currently archived, so its full analysis cannot be rerun from this repository alone. A separate registration record and alternate inferential output are also unavailable, so that method difference cannot be reconciled here.
+
+### 4.4 Invariance to Lexical and Format Variations
 To test whether the doubling effect is driven by token-level repetition of identical surface strings, we evaluated cross-format variants: digit+word (`4 + four =`) and word+word (`four + four =`).
 
 **Table 4: Mean matched equal-operand advantage across all seven target levels.**
@@ -144,7 +154,7 @@ Paired comparisons use the seven matched target levels. Only digit+digit versus 
 
 ---
 
-### 4.4 Exploratory Candidate-Component Screen
+### 4.5 Exploratory Candidate-Component Screen
 
 The clean-rerun component screen uses discovery target sums 4, 6, 10, 12, and 16. It names `10_mlp_out`, L9H9, and L10H2 as candidates for follow-up, not as a confirmed circuit. The candidate adjustment family contains 12 components. For the nominated candidates, one-sided causal tests have raw p = 0.03125 but one-sided FDR q = 0.09375; two-sided FDR q = 0.15. With five discovery targets, the minimum one-sided exact p is 1/32 = 0.03125, so the screen has limited resolution and a null finding is compatible with low power. No nominated component passes q < 0.05.
 
@@ -210,7 +220,7 @@ This investigation illustrates several safeguards for this task:
 
 ## 8. Conclusion
 
-The reported evaluation suite does not establish a general, reliably functioning addition mechanism in GPT-2 Small. Several early mechanistic interpretations were narrowed after methodological corrections. The seven-target scan shows a target-dependent equal-operand contrast. The 20-target extension has a positive mean but fails the 70% breadth criterion, and its strongest contrast is concentrated in a post hoc subgroup of multiples of ten. The corpus correlations are exploratory and do not resolve a frequency account. Full prompt-level format/operator scores and the single-operand control remain absent. These limits constrain further conclusions; the results do not establish the absence of arithmetic-related representations or operator-sensitive mechanisms elsewhere in the model.
+The reported evaluation suite does not establish a general, reliably functioning addition mechanism in GPT-2 Small. Several early mechanistic interpretations were narrowed after methodological corrections. The seven-target scan shows a target-dependent equal-operand contrast. The 20-target extension has a positive mean but fails the 70% breadth criterion. A 552-target exploratory decomposition finds a larger equal-minus-unequal score when equal operands end in 5 than for non-round targets, but the design ties operand endings to target class and uses unequal-control sets with different compositions. It therefore does not isolate a roundness effect, explain the source of the logits, or resolve a frequency account. Full prompt-level format/operator scores, source inputs for rerunning the 552-target decomposition, and the single-operand control remain absent. These limits constrain further conclusions; the results do not establish the absence of arithmetic-related representations or operator-sensitive mechanisms elsewhere in the model.
 
 ---
 

@@ -1,0 +1,375 @@
+{
+  "status": "post-hoc exploratory decomposition; not part of preregistration",
+  "recomputation_checks": {
+    "n_targets": 552,
+    "n_prompt_score_records": 3864,
+    "max_abs_A_T_difference": 2.220446049250313e-16,
+    "max_abs_equal_arm_difference": 4.440892098500626e-16,
+    "max_abs_unequal_arm_difference": 4.440892098500626e-16
+  },
+  "class_arm_summary": [
+    {
+      "class_short": "nonround",
+      "n_targets": 276,
+      "mean_equal_S": 0.07485068477870185,
+      "sd_equal_S": 0.3313785389447431,
+      "mean_unequal_S": 0.04018167520298857,
+      "sd_unequal_S": 0.19594411531197556,
+      "mean_A_T": 0.03466900957571327,
+      "sd_A_T": 0.2157368671880064,
+      "median_A_T": 0.00812800725301105,
+      "positive_A_T": 145
+    },
+    {
+      "class_short": "round_target_operand_ends0",
+      "n_targets": 138,
+      "mean_equal_S": 1.2840925437816675,
+      "sd_equal_S": 0.837529409849485,
+      "mean_unequal_S": 1.1034702068365716,
+      "sd_unequal_S": 0.6203174508919086,
+      "mean_A_T": 0.18062233694509605,
+      "sd_A_T": 0.34667229204023725,
+      "median_A_T": 0.15579843521118147,
+      "positive_A_T": 100
+    },
+    {
+      "class_short": "round_target_operand_ends5",
+      "n_targets": 138,
+      "mean_equal_S": 0.6034488401551178,
+      "sd_equal_S": 0.5883667483276487,
+      "mean_unequal_S": 0.2757515826662957,
+      "sd_unequal_S": 0.31093037397147477,
+      "mean_A_T": 0.327697257488822,
+      "sd_A_T": 0.36625966339537314,
+      "median_A_T": 0.24002138773600257,
+      "positive_A_T": 122
+    }
+  ],
+  "primary_preregistered_HC3": {
+    "term": "round_target_operands_end5",
+    "estimate": 0.29302824791310866,
+    "standard_error": 0.03262265587604113,
+    "p_value_two_sided": 1.3711954713679509e-17,
+    "ci95_low": 0.2288791814892569,
+    "ci95_high": 0.3571773143369604
+  },
+  "primary_cluster_by_band_sensitivity": {
+    "term": "round_target_operands_end5",
+    "estimate": 0.29302824791310866,
+    "standard_error": 0.05978905488936775,
+    "p_value_two_sided": 1.4670434859686624e-05,
+    "ci95_low": 0.17236905021206797,
+    "ci95_high": 0.4136874456141494
+  },
+  "primary_class_digit_length_interaction_exploratory": {
+    "four_digit_class_difference_HC3": {
+      "term": "round_target_operands_end5",
+      "estimate": 0.20914296678289884,
+      "standard_error": 0.027473196614460835,
+      "p_value_two_sided": 2.2702046971037456e-13,
+      "ci95_low": 0.15511929701850566,
+      "ci95_high": 0.263166636547292
+    },
+    "extra_3_digit_difference_HC3": {
+      "term": "round_target_operands_end5:three_digit_target",
+      "estimate": 0.7235105497480935,
+      "standard_error": 0.14689064638871097,
+      "p_value_two_sided": 1.2722436522762677e-06,
+      "ci95_low": 0.43466277264577424,
+      "ci95_high": 1.0123583268504128
+    },
+    "four_digit_class_difference_cluster_sensitivity": {
+      "term": "round_target_operands_end5",
+      "estimate": 0.20914296678289884,
+      "standard_error": 0.03491612323790316,
+      "p_value_two_sided": 4.10757288216207e-07,
+      "ci95_low": 0.13867937734313257,
+      "ci95_high": 0.2796065562226651
+    },
+    "extra_3_digit_difference_cluster_sensitivity": {
+      "term": "round_target_operands_end5:three_digit_target",
+      "estimate": 0.7235105497480935,
+      "standard_error": 0.19311748699413722,
+      "p_value_two_sided": 0.0005406744306060998,
+      "ci95_low": 0.3337836827509463,
+      "ci95_high": 1.1132374167452408
+    },
+    "3_digit_class_difference_HC3": {
+      "estimate": 0.9326535165309924,
+      "standard_error": 0.14429859827550903,
+      "p_value_two_sided": 3.2442394938361336e-10,
+      "ci95_low": 0.6489027783079178,
+      "ci95_high": 1.216404254754067
+    },
+    "3_digit_class_difference_cluster_sensitivity": {
+      "estimate": 0.9326535165309924,
+      "standard_error": 0.18993479965758397,
+      "p_value_two_sided": 1.4233270095512895e-05,
+      "ci95_low": 0.5493495726135352,
+      "ci95_high": 1.3159574604484496
+    }
+  },
+  "primary_class_effect_adjusting_for_answer_token_count_exploratory": {
+    "HC3": {
+      "term": "round_target_operands_end5",
+      "estimate": 0.2913092451485994,
+      "standard_error": 0.03257238357210299,
+      "p_value_two_sided": 1.8495358635789102e-17,
+      "ci95_low": 0.22725846437370373,
+      "ci95_high": 0.3553600259234951
+    },
+    "cluster_by_magnitude_band_sensitivity": {
+      "term": "round_target_operands_end5",
+      "estimate": 0.2913092451485994,
+      "standard_error": 0.05983746673396479,
+      "p_value_two_sided": 1.6305259653449766e-05,
+      "ci95_low": 0.17055234838977773,
+      "ci95_high": 0.4120661419074211
+    }
+  },
+  "operand_roundness_secondary_HC3": {
+    "term": "equal_operand_ends0",
+    "estimate": -0.14707492054372578,
+    "standard_error": 0.037455688532144094,
+    "p_value_two_sided": 0.0001136158624711321,
+    "ci95_low": -0.22087168883906028,
+    "ci95_high": -0.07327815224839128,
+    "p_holm_two_secondaries": 0.0001136158624711321
+  },
+  "operand_roundness_cluster_by_band_sensitivity": {
+    "term": "equal_operand_ends0",
+    "estimate": -0.14707492054372578,
+    "standard_error": 0.03814647406503081,
+    "p_value_two_sided": 0.00038994824321774053,
+    "ci95_low": -0.22405762188140277,
+    "ci95_high": -0.07009221920604879
+  },
+  "overall_mean_secondary": {
+    "n": 552,
+    "mean": 0.14441440339633616,
+    "sd": 0.3181814470335189,
+    "se": 0.013542701737677592,
+    "ci95_low": 0.11781276298146268,
+    "ci95_high": 0.17101604381120963,
+    "t": 10.663633165201901,
+    "p_value_two_sided": 2.8999554268183967e-24,
+    "p_holm_two_secondaries": 5.7999108536367934e-24
+  },
+  "nonround_operand_parity_exploratory": {
+    "HC3": {
+      "term": "even_operand",
+      "estimate": 0.14732290109340818,
+      "standard_error": 0.02685489913259083,
+      "p_value_two_sided": 1.0735477509701643e-07,
+      "ci95_low": 0.09441225262991457,
+      "ci95_high": 0.20023354955690179
+    },
+    "cluster_by_magnitude_band_sensitivity": {
+      "term": "even_operand",
+      "estimate": 0.14732290109340818,
+      "standard_error": 0.03363209592625725,
+      "p_value_two_sided": 7.731707993023949e-05,
+      "ci95_low": 0.07945058367719368,
+      "ci95_high": 0.21519521850962267
+    },
+    "definition": "difference: even equal operand minus odd equal operand within non-round targets"
+  },
+  "nonround_operand_last_digit_exploratory": {
+    "HC3": [
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.2]",
+        "estimate": 0.16333232402891765,
+        "standard_error": 0.07302247367238197,
+        "p_value_two_sided": 0.026279718337547622,
+        "ci95_low": 0.01944035357658555,
+        "ci95_high": 0.30722429448124977,
+        "p_holm_across_7_digit_contrasts": 0.13971981842204834
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.3]",
+        "estimate": -0.04223962946456986,
+        "standard_error": 0.0392252887686105,
+        "p_value_two_sided": 0.2826968161128061,
+        "ci95_low": -0.11953369810705416,
+        "ci95_high": 0.03505443917791445,
+        "p_holm_across_7_digit_contrasts": 0.591921018055124
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.4]",
+        "estimate": 0.14566166522637658,
+        "standard_error": 0.045658841265022565,
+        "p_value_two_sided": 0.001623358798536034,
+        "ci95_low": 0.0556901768915575,
+        "ci95_high": 0.23563315356119566,
+        "p_holm_across_7_digit_contrasts": 0.011363511589752238
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.6]",
+        "estimate": 0.0975045903759052,
+        "standard_error": 0.04720225487177579,
+        "p_value_two_sided": 0.039999396599208675,
+        "ci95_low": 0.004491780459800684,
+        "ci95_high": 0.1905174002920097,
+        "p_holm_across_7_digit_contrasts": 0.1599975863968347
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.7]",
+        "estimate": 0.00791147300783115,
+        "standard_error": 0.04028274417430034,
+        "p_value_two_sided": 0.844474713098468,
+        "ci95_low": -0.0714663286874781,
+        "ci95_high": 0.08728927470314041,
+        "p_holm_across_7_digit_contrasts": 0.844474713098468
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.8]",
+        "estimate": 0.09120927965294245,
+        "standard_error": 0.03993004315421914,
+        "p_value_two_sided": 0.02328663640367472,
+        "ci95_low": 0.012526481046514118,
+        "ci95_high": 0.1698920782593708,
+        "p_holm_across_7_digit_contrasts": 0.13971981842204834
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.9]",
+        "estimate": -0.06004159165590227,
+        "standard_error": 0.04643335715621551,
+        "p_value_two_sided": 0.19730700601837464,
+        "ci95_low": -0.15153927613453327,
+        "ci95_high": 0.03145609282272872,
+        "p_holm_across_7_digit_contrasts": 0.591921018055124
+      }
+    ],
+    "cluster_by_magnitude_band_sensitivity": [
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.2]",
+        "estimate": 0.16333232402891765,
+        "standard_error": 0.07283656290032364,
+        "p_value_two_sided": 0.03026920657764883,
+        "ci95_low": 0.016342189143589786,
+        "ci95_high": 0.3103224589142455,
+        "p_holm_across_7_digit_contrasts": 0.15134603288824416
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.3]",
+        "estimate": -0.04223962946456986,
+        "standard_error": 0.0388223965451104,
+        "p_value_two_sided": 0.28278961855897206,
+        "ci95_low": -0.12058639759181916,
+        "ci95_high": 0.03610713866267943,
+        "p_holm_across_7_digit_contrasts": 0.5655792371179441
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.4]",
+        "estimate": 0.14566166522637658,
+        "standard_error": 0.054074391344059385,
+        "p_value_two_sided": 0.010111294474190392,
+        "ci95_low": 0.036535125463886264,
+        "ci95_high": 0.2547882049888669,
+        "p_holm_across_7_digit_contrasts": 0.07077906131933275
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.6]",
+        "estimate": 0.0975045903759052,
+        "standard_error": 0.04194289580762625,
+        "p_value_two_sided": 0.024995389965590174,
+        "ci95_low": 0.012860399783314228,
+        "ci95_high": 0.18214878096849618,
+        "p_holm_across_7_digit_contrasts": 0.14997233979354105
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.7]",
+        "estimate": 0.00791147300783115,
+        "standard_error": 0.03266027283501321,
+        "p_value_two_sided": 0.8097767637577646,
+        "ci95_low": -0.05799962600956728,
+        "ci95_high": 0.07382257202522959,
+        "p_holm_across_7_digit_contrasts": 0.8097767637577646
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.8]",
+        "estimate": 0.09120927965294245,
+        "standard_error": 0.04525179018113456,
+        "p_value_two_sided": 0.050270293588327235,
+        "ci95_low": -0.00011253013138454171,
+        "ci95_high": 0.18253108943726945,
+        "p_holm_across_7_digit_contrasts": 0.20108117435330894
+      },
+      {
+        "term": "C(operand_last_digit_factor, Treatment(reference='1'))[T.9]",
+        "estimate": -0.06004159165590227,
+        "standard_error": 0.04004465173896778,
+        "p_value_two_sided": 0.14125851444631884,
+        "ci95_low": -0.14085497062604996,
+        "ci95_high": 0.02077178731424542,
+        "p_holm_across_7_digit_contrasts": 0.4237755433389565
+      }
+    ]
+  },
+  "nonround_last_digit_joint_Wald_HC3": {
+    "statistic": 4.768621735669812,
+    "p_value": 5.084251056123215e-05,
+    "df_num": 7
+  },
+  "nonround_last_digit_joint_Wald_cluster_by_band": {
+    "statistic": 4.541544862190421,
+    "p_value": 0.0007622311601410081,
+    "df_num": 7
+  },
+  "unequal_control_features_by_class": [
+    {
+      "class_short": "nonround",
+      "n_unequal_split_rows": 828,
+      "mean_operand_gap": 770.6038647342995,
+      "mean_relative_gap": 0.26937136266593026,
+      "mean_count_operands_ending_0_or_5": 0.25966183574879226,
+      "fraction_any_operand_ending_0_or_5": 0.25966183574879226,
+      "fraction_both_operands_ending_0_or_5": 0.0
+    },
+    {
+      "class_short": "round_target_operand_ends0",
+      "n_unequal_split_rows": 414,
+      "mean_operand_gap": 540.8212560386473,
+      "mean_relative_gap": 0.19460216131727445,
+      "mean_count_operands_ending_0_or_5": 2.0,
+      "fraction_any_operand_ending_0_or_5": 1.0,
+      "fraction_both_operands_ending_0_or_5": 1.0
+    },
+    {
+      "class_short": "round_target_operand_ends5",
+      "n_unequal_split_rows": 414,
+      "mean_operand_gap": 765.8599033816425,
+      "mean_relative_gap": 0.2684396890970103,
+      "mean_count_operands_ending_0_or_5": 0.2028985507246377,
+      "fraction_any_operand_ending_0_or_5": 0.10144927536231885,
+      "fraction_both_operands_ending_0_or_5": 0.10144927536231885
+    }
+  ],
+  "answer_token_count_distribution_by_class": [
+    {
+      "target_class": "nonround_sum_equal_operands_not_round",
+      "1": 33,
+      "2": 242,
+      "3": 1
+    },
+    {
+      "target_class": "round_sum_equal_operands_not_round",
+      "1": 17,
+      "2": 121,
+      "3": 0
+    },
+    {
+      "target_class": "round_sum_equal_operands_round",
+      "1": 17,
+      "2": 121,
+      "3": 0
+    }
+  ],
+  "interpretation": [
+    "For even equal splits T=2a, round targets with a not divisible by 10 necessarily have a ending in 5; round targets with a divisible by 10 have a ending in 0. Non-round even targets cannot have a ending in 0 or 5.",
+    "Therefore the primary class contrast cannot separate target roundness from the operand-ending-5/doubling pattern in this design.",
+    "The end-0 class has a high unequal-control baseline; the difference in A_T is smaller than the equal-prompt-score difference because the unequal baseline is also substantially higher.",
+    "Digit length interaction and parity/last-digit analyses are post hoc exploratory. They do not identify a causal mechanism or attention head.",
+    "Cluster-by-magnitude-band results are a sensitivity analysis, not a complete model of dependency caused by shared neighboring-answer tokens."
+  ]
+}
