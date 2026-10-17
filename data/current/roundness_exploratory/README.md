@@ -16,6 +16,6 @@ This is an exploratory class association, not an isolated roundness effect or a 
 - `confirmatory_prompt_level_sequence_scores.csv`
 - `prereg_fullrange_strict_split_manifest_v2.csv`
 
-Those source inputs are not included in this repository. The JSON records the reported numerical consistency checks, but the full calculation cannot be independently rerun from the archived files alone. Its top-level status calls the decomposition post hoc and outside the preregistered analysis, while one result key uses a `primary_preregistered` label. No separate registration record is archived to resolve that inconsistency. An alternative inferential output is also unavailable, so the v3 method cannot be compared with it.
+The target contrasts, prompt-level sequence scores, and split manifest are included in this directory, so the full calculation can be rerun from the archived inputs and code. The JSON records the reported numerical consistency checks. Its top-level status calls the decomposition post hoc and outside the preregistered analysis, while one result key retains the legacy name `primary_preregistered_HC3`; no separate registration record or alternative inferential output is archived to resolve or compare that labeling and inference history. The manuscript therefore treats the decomposition as exploratory and reports the v3 estimates.
 
-The three CSVs here are derived summaries, not prompt-level raw data. File hashes and statuses are recorded in `data/MANIFEST.csv`.
+The three original input CSVs accompany the derived summaries. File hashes and statuses are recorded in `data/MANIFEST.csv`.

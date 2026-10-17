@@ -416,7 +416,7 @@ report_path = BASE / "exploratory_decomposition_report_v3.md"
 with open(report_path, "w", encoding="utf-8") as f:
     f.write("# Exploratory decomposition of the round-target result\n\n")
     f.write("**Status:** Post-hoc exploratory analysis in the same research sequence. It is not a separate preregistered test or evidence for a particular attention head.\n\n")
-    f.write("The result JSON labels this decomposition post hoc and outside the preregistered analysis, while one output key uses a `primary_preregistered` label. No separate registration record is archived to resolve that label. The manuscript therefore reports this decomposition as exploratory.\n\n")
+    f.write("The result JSON labels this decomposition post hoc and outside the preregistered analysis, while one output key retains the legacy name `primary_preregistered_HC3`. No separate registration record or alternative inferential output is archived to clarify that label or compare inference methods. The manuscript therefore reports this decomposition as exploratory.\n\n")
     f.write("## Validation\n\n")
     f.write(f"- Targets in the analyzed score set: {df.target.nunique()}\n")
     f.write(f"- Prompt-level scoring records: {len(scores)}\n")
