@@ -1,5 +1,20 @@
 {
   "status": "post-hoc exploratory decomposition; not part of preregistration",
+  "metric_units": "nats per answer token (mean conditional log-probability per answer token)",
+  "inference_conventions": {
+    "saved_result_statistics": {
+      "reference_distribution": "not recorded in the original run",
+      "original_statsmodels_version": "not recorded"
+    },
+    "current_reproduction_script": {
+      "HC3_reference_distribution": "standard normal",
+      "cluster_by_magnitude_band_reference_distribution": "standard normal",
+      "cluster_small_sample_correction": true,
+      "cluster_df_correction": true,
+      "use_t": false,
+      "statsmodels_version": "constrained in requirements-analysis.txt; not the recorded original version"
+    }
+  },
   "recomputation_checks": {
     "n_targets": 552,
     "n_prompt_score_records": 3864,

@@ -1,6 +1,6 @@
 # Analysis environment record
 
-The full-record notebook records these package versions in its saved output:
+The full-record notebook records these package versions in its saved output. This records the environment visible in the notebook; it is not evidence that a clean environment has reproduced the complete notebook.
 
 | Package | Recorded version |
 |---|---|
@@ -13,4 +13,4 @@ The full-record notebook records these package versions in its saved output:
 | einops | 0.8.2 (install log) |
 | tqdm | 4.67.3 (install log) |
 
-The notebook prints `Python: 3.10+`. The repository’s `requirements.txt` is a flexible dependency list, not a lockfile. A complete environment lock should be generated from a clean, successful rerun after recording the runtime and every direct dependency. No environment is claimed to reproduce the saved outputs exactly yet.
+The notebook prints `Python: 3.10+`. `requirements.txt` lists the recorded non-PyTorch packages. Install PyTorch separately with the index URL for the intended CPU or accelerator backend; for the recorded CPU build, use `python -m pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cpu`. The 552-target analysis script also requires SciPy, statsmodels, and tabulate; these are listed in `requirements-analysis.txt` because their exact original versions were not recorded. The installation instructions have not been validated in a clean environment, and no end-to-end notebook reproduction is claimed.

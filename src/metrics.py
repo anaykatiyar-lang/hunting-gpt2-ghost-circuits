@@ -99,6 +99,8 @@ def doubles_advantage(
     Controls must be averaged over both operand orders per the dense-scan
     design (E11): unique controls are half the printed n.
     """
+    if not control_scores:
+        raise ValueError("control_scores must contain at least one score.")
     return float(double_score - np.mean(control_scores))
 
 
@@ -203,8 +205,10 @@ def verify_dla_sum(
     The residual must be < atol for the decomposition to be valid (E01).
 
     Args:
-        component_dlas: List of DLA values for all 159 components
-                        (144 heads + 12 MLPs + embed + pos_embed + bias).
+        component_dlas: List of DLA values for the 158 residual-stream
+                        components (144 heads + 12 MLPs + embed + pos_embed).
+                        The unembedding-bias difference is added separately
+                        by this function.
         b_U_target: Unembedding bias for the target token.
         b_U_foil: Unembedding bias for the foil token.
         measured_logit_diff: The model's actual logit difference.
@@ -243,13 +247,30 @@ def own_answer_contrast(
     if digits is None:
         digits = list(range(3, 10))
 
+    logit_matrix = np.asarray(logit_matrix, dtype=float)
+    answer_labels = np.asarray(answer_labels)
+    digits = list(digits)
+
+    if logit_matrix.ndim != 2:
+        raise ValueError("logit_matrix must have shape [n_prompts, n_digits].")
+    if answer_labels.ndim != 1 or answer_labels.shape[0] != logit_matrix.shape[0]:
+        raise ValueError("answer_labels must be one-dimensional with one label per prompt.")
+    if logit_matrix.shape[1] != len(digits):
+        raise ValueError("logit_matrix must have one column for each requested digit.")
+    if not digits or len(set(digits)) != len(digits):
+        raise ValueError("digits must be a non-empty list of unique labels.")
+    if not np.isfinite(logit_matrix).all():
+        raise ValueError("logit_matrix must contain only finite values.")
+
     contrasts = []
     for i, d in enumerate(digits):
         mask = answer_labels == d
         if mask.sum() == 0:
-            continue
+            raise ValueError(f"No prompts have answer label {d}; contrast is undefined.")
+        if (~mask).sum() == 0:
+            raise ValueError(f"No comparison prompts remain for answer label {d}.")
         own = logit_matrix[mask, i].mean()
         other = logit_matrix[~mask, i].mean()
         contrasts.append(own - other)
 
-    return float(np.mean(contrasts)) if contrasts else 0.0
+    return float(np.mean(contrasts))

@@ -1,6 +1,5 @@
-# Direct package versions visible in the saved final notebook output.
-# This is an observation record, not a complete or portable lockfile.
-torch==2.11.0+cpu
+# Package versions visible in the saved final notebook output.
+# Install PyTorch separately using the wheel index for the chosen backend.
 transformer_lens==3.6.0
 transformers==5.18.0
 numpy==2.1.3

@@ -1,0 +1,23 @@
+name: repository checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.1.3
+          python -m pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cpu
+      - name: Run deterministic checks
+        run: python -m unittest discover -s tests -v
+      - name: Check Python syntax
+        run: python -m compileall -q src tests

@@ -8,6 +8,7 @@ Inputs (place in the same directory as this script):
 This is exploratory and not itself a preregistered test. It follows the broader research sequence and does not identify causal effects.
 """
 from pathlib import Path
+import argparse
 import json
 import numpy as np
 import pandas as pd
@@ -29,11 +30,11 @@ ROUND0 = "round_sum_equal_operands_round"
 def robust_fit(formula, data, kind="HC3", groups=None):
     ordinary = smf.ols(formula, data=data).fit()
     if kind == "HC3":
-        return ordinary.get_robustcov_results(cov_type="HC3")
+        return ordinary.get_robustcov_results(cov_type="HC3", use_t=False)
     if kind == "cluster_by_magnitude_band":
         return ordinary.get_robustcov_results(
             cov_type="cluster", groups=groups,
-            use_correction=True, df_correction=True
+            use_correction=True, df_correction=True, use_t=False
         )
     raise ValueError(kind)
 
@@ -68,10 +69,31 @@ def contrast_summary(model, term_weights):
     }
 
 
-# Load data
-contrast_path = BASE / "confirmatory_target_level_contrasts.csv"
-score_path = BASE / "confirmatory_prompt_level_sequence_scores.csv"
-manifest_path = BASE / "prereg_fullrange_strict_split_manifest_v2.csv"
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--target-contrasts", type=Path,
+        default=BASE / "confirmatory_target_level_contrasts.csv",
+        help="CSV with one target-level contrast per target.",
+    )
+    parser.add_argument(
+        "--prompt-scores", type=Path,
+        default=BASE / "confirmatory_prompt_level_sequence_scores.csv",
+        help="CSV with the equal and unequal prompt-level sequence scores.",
+    )
+    parser.add_argument(
+        "--split-manifest", type=Path,
+        default=BASE / "prereg_fullrange_strict_split_manifest_v2.csv",
+        help="CSV with the strict split manifest.",
+    )
+    return parser.parse_args()
+
+
+# Load data; defaults use the archived inputs alongside this script.
+args = parse_args()
+contrast_path = args.target_contrasts
+score_path = args.prompt_scores
+manifest_path = args.split_manifest
 for path in [contrast_path, score_path, manifest_path]:
     if not path.exists():
         raise FileNotFoundError(f"Missing required input: {path}")
@@ -378,6 +400,21 @@ token_distribution.to_csv(BASE / "exploratory_answer_token_counts_by_class.csv",
 
 results = {
     "status": "post-hoc exploratory decomposition; not part of preregistration",
+    "metric_units": "nats per answer token (mean conditional log-probability per answer token)",
+    "inference_conventions": {
+        "saved_result_statistics": {
+            "reference_distribution": "not recorded in the original run",
+            "original_statsmodels_version": "not recorded"
+        },
+        "current_reproduction_script": {
+            "HC3_reference_distribution": "standard normal",
+            "cluster_by_magnitude_band_reference_distribution": "standard normal",
+            "cluster_small_sample_correction": True,
+            "cluster_df_correction": True,
+            "use_t": False,
+            "statsmodels_version": "constrained in requirements-analysis.txt; not the recorded original version"
+        }
+    },
     "recomputation_checks": {
         "n_targets": int(df.target.nunique()),
         "n_prompt_score_records": int(len(scores)),
@@ -424,9 +461,10 @@ with open(report_path, "w", encoding="utf-8") as f:
     f.write(f"- Maximum absolute error for equal S: {results['recomputation_checks']['max_abs_equal_arm_difference']:.3g}\n")
     f.write(f"- Maximum absolute error for mean unequal S: {results['recomputation_checks']['max_abs_unequal_arm_difference']:.3g}\n\n")
     f.write("## Class-specific decomposition of equal and unequal arms\n\n")
-    f.write("All values below are per-token score units. A_T is mean equal-prompt S minus the mean of the six unequal-prompt S values.\n\n")
+    f.write("All values below are nats per answer token: mean conditional log-probabilities averaged across answer tokens. A_T is mean equal-prompt S minus the mean of the six unequal-prompt S values.\n\n")
     f.write(class_arms.to_markdown(index=False))
     f.write("\n\n## End-5 class contrast and dependence sensitivity\n\n")
+    f.write("The current reproduction script explicitly uses a standard-normal reference (`use_t=False`) for HC3 and clustered covariance results. The original statsmodels version and inference setting for the saved p-values were not recorded, so their exact software-level provenance remains unresolved.\n\n")
     f.write(f"- HC3, end-5 versus non-round comparison: `{json.dumps(primary_results['HC3'])}`\n")
     f.write(f"- Cluster-by-magnitude-band sensitivity (43 bands): `{json.dumps(primary_results['cluster_by_magnitude_band_sensitivity'])}`\n\n")
     f.write("The point estimate remains positive, but the cluster sensitivity gives a larger standard error. This still does not separate target roundness from the digit-5 doubling confound.\n\n")

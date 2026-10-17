@@ -12,7 +12,7 @@
 
 ## Class-specific decomposition of equal and unequal arms
 
-All values below are per-token score units. A_T is mean equal-prompt S minus the mean of the six unequal-prompt S values.
+All values below are nats per answer token: mean conditional log-probabilities averaged across answer tokens. A_T is mean equal-prompt S minus the mean of the six unequal-prompt S values.
 
 | class_short                |   n_targets |   mean_equal_S |   sd_equal_S |   mean_unequal_S |   sd_unequal_S |   mean_A_T |   sd_A_T |   median_A_T |   positive_A_T |
 |:---------------------------|------------:|---------------:|-------------:|-----------------:|---------------:|-----------:|---------:|-------------:|---------------:|
@@ -21,6 +21,8 @@ All values below are per-token score units. A_T is mean equal-prompt S minus the
 | round_target_operand_ends5 |         138 |      0.603449  |     0.588367 |        0.275752  |       0.31093  |   0.327697 | 0.36626  |   0.240021   |            122 |
 
 ## End-5 class contrast and dependence sensitivity
+
+The current reproduction script explicitly uses a standard-normal reference (`use_t=False`) for HC3 and clustered covariance results. The original statsmodels version and inference setting for the saved p-values were not recorded, so their exact software-level provenance remains unresolved.
 
 - HC3, end-5 versus non-round comparison: `{"term": "round_target_operands_end5", "estimate": 0.29302824791310866, "standard_error": 0.03262265587604113, "p_value_two_sided": 1.3711954713679509e-17, "ci95_low": 0.2288791814892569, "ci95_high": 0.3571773143369604}`
 - Cluster-by-magnitude-band sensitivity (43 bands): `{"term": "round_target_operands_end5", "estimate": 0.29302824791310866, "standard_error": 0.05978905488936775, "p_value_two_sided": 1.4670434859686624e-05, "ci95_low": 0.17236905021206797, "ci95_high": 0.4136874456141494}`

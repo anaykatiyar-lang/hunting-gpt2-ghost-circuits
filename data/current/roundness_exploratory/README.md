@@ -4,7 +4,7 @@ This directory holds the reported decomposition of equal-minus-unequal target sc
 
 ## Main class contrast
 
-The archived output reports 552 target summaries and 3,864 prompt-score records. Mean target-level advantage is +0.034669 for non-round targets (n=276), +0.327697 when the equal operand ends in 5 (n=138), and +0.180622 when it ends in 0 (n=138). The end-5 versus non-round magnitude-band-adjusted estimate is +0.293028 logit units. The cluster-by-magnitude-band sensitivity (43 bands) reports a 95% interval [+0.172369, +0.413687] and two-sided p=1.4670e-05.
+The archived output reports 552 target summaries and 3,864 prompt-score records. Scores are mean conditional log-probabilities per answer token, in nats per token. Mean target-level advantage is +0.034669 for non-round targets (n=276), +0.327697 when the equal operand ends in 5 (n=138), and +0.180622 when it ends in 0 (n=138). The end-5 versus non-round magnitude-band-adjusted estimate is +0.293028 nats per answer token. The cluster-by-magnitude-band sensitivity (43 bands) reports a 95% interval [+0.172369, +0.413687] and two-sided p=1.4670e-05.
 
 This is an exploratory class association, not an isolated roundness effect or a circuit result. For equal operands, T=2a ties target class to the equal operand's final digit. Unequal-control composition also differs across classes.
 
