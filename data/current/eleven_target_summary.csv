@@ -1,2 +1,2 @@
-cohort,target_sums,n_targets,mean_equal_minus_unequal,exact_one_sided_sign_flip_p,positive_contrasts,source,verification
-held_out,42;44;52;62;64;66;76;82;88;92;96,11,0.28234,0.175293,7,notebook-reported aggregate,not independently recomputed; per-target scores not archived
+cohort,target_sums,n_targets,all_six_templates_mean,all_six_templates_one_sided_exact_sign_flip_p,all_six_templates_positive_targets,arithmetic_mean,arithmetic_one_sided_exact_sign_flip_p,arithmetic_positive_targets,source,verification
+separate 11-target set,42;44;52;62;64;66;76;82;88;92;96,11,0.2823425351,0.17529296875,7,0.2679559534,0.1865234375,6,strict_unused_targets_results.json,independently recomputed from saved logits and neighboring-token values

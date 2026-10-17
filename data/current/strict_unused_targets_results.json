@@ -1,0 +1,1531 @@
+[
+  {
+    "target": 42,
+    "target_token_id": 5433,
+    "stratum": "low",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "21 + 21 =",
+          "target_logit": -102.4786605834961,
+          "left_neighbor_logit": -102.90582275390625,
+          "right_neighbor_logit": -103.15391540527344,
+          "margin_at": 0.55120849609375
+        },
+        "matched_comma": {
+          "prompt_text": "21, 21,",
+          "target_logit": -105.57657623291016,
+          "left_neighbor_logit": -105.68479919433594,
+          "right_neighbor_logit": -106.61587524414062,
+          "margin_at": 0.573760986328125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 21 and 21. Output:",
+          "target_logit": -107.30427551269531,
+          "left_neighbor_logit": -107.55097198486328,
+          "right_neighbor_logit": -107.69194030761719,
+          "margin_at": 0.3171806335449219
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 21 and 21. The value is:",
+          "target_logit": -88.45391845703125,
+          "left_neighbor_logit": -88.8920669555664,
+          "right_neighbor_logit": -89.46942901611328,
+          "margin_at": 0.7268295288085938
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 21 and 21. Result:",
+          "target_logit": -85.38575744628906,
+          "left_neighbor_logit": -86.16485595703125,
+          "right_neighbor_logit": -86.82344818115234,
+          "margin_at": 1.1083946228027344
+        },
+        "neutral_3": {
+          "prompt_text": "Given 21 and 21. Value:",
+          "target_logit": -122.53599548339844,
+          "left_neighbor_logit": -122.51249694824219,
+          "right_neighbor_logit": -122.73483276367188,
+          "margin_at": 0.08766937255859375
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "17 + 25 =",
+          "target_logit": -100.67758178710938,
+          "left_neighbor_logit": -101.16514587402344,
+          "right_neighbor_logit": -101.03898620605469,
+          "margin_at": 0.4244842529296875
+        },
+        "matched_comma": {
+          "prompt_text": "17, 25,",
+          "target_logit": -123.73375701904297,
+          "left_neighbor_logit": -123.99205017089844,
+          "right_neighbor_logit": -124.09962463378906,
+          "margin_at": 0.31208038330078125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 17 and 25. Output:",
+          "target_logit": -114.48612213134766,
+          "left_neighbor_logit": -114.90559387207031,
+          "right_neighbor_logit": -114.65766906738281,
+          "margin_at": 0.29550933837890625
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 17 and 25. The value is:",
+          "target_logit": -91.99424743652344,
+          "left_neighbor_logit": -92.56460571289062,
+          "right_neighbor_logit": -92.24186706542969,
+          "margin_at": 0.40898895263671875
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 17 and 25. Result:",
+          "target_logit": -84.05196380615234,
+          "left_neighbor_logit": -84.72903442382812,
+          "right_neighbor_logit": -84.82100677490234,
+          "margin_at": 0.7230567932128906
+        },
+        "neutral_3": {
+          "prompt_text": "Given 17 and 25. Value:",
+          "target_logit": -132.2294921875,
+          "left_neighbor_logit": -132.4268341064453,
+          "right_neighbor_logit": -132.0761260986328,
+          "margin_at": 0.0219879150390625
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "25 + 17 =",
+          "target_logit": -102.849853515625,
+          "left_neighbor_logit": -103.38740539550781,
+          "right_neighbor_logit": -103.25125122070312,
+          "margin_at": 0.46947479248046875
+        },
+        "matched_comma": {
+          "prompt_text": "25, 17,",
+          "target_logit": -129.7006072998047,
+          "left_neighbor_logit": -129.87881469726562,
+          "right_neighbor_logit": -129.8317108154297,
+          "margin_at": 0.15465545654296875
+        },
+        "neutral_0": {
+          "prompt_text": "We have 25 and 17. Output:",
+          "target_logit": -111.22691345214844,
+          "left_neighbor_logit": -111.66352844238281,
+          "right_neighbor_logit": -111.39447021484375,
+          "margin_at": 0.30208587646484375
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 25 and 17. The value is:",
+          "target_logit": -92.38871765136719,
+          "left_neighbor_logit": -92.79978942871094,
+          "right_neighbor_logit": -92.58235168457031,
+          "margin_at": 0.3023529052734375
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 25 and 17. Result:",
+          "target_logit": -81.56340026855469,
+          "left_neighbor_logit": -82.2734375,
+          "right_neighbor_logit": -82.32955932617188,
+          "margin_at": 0.73809814453125
+        },
+        "neutral_3": {
+          "prompt_text": "Given 25 and 17. Value:",
+          "target_logit": -129.17233276367188,
+          "left_neighbor_logit": -129.431884765625,
+          "right_neighbor_logit": -129.0868682861328,
+          "margin_at": 0.08704376220703125
+        }
+      }
+    }
+  },
+  {
+    "target": 44,
+    "target_token_id": 5846,
+    "stratum": "low",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "22 + 22 =",
+          "target_logit": -101.93708801269531,
+          "left_neighbor_logit": -101.85340881347656,
+          "right_neighbor_logit": -101.85456848144531,
+          "margin_at": -0.083099365234375
+        },
+        "matched_comma": {
+          "prompt_text": "22, 22,",
+          "target_logit": -107.92584228515625,
+          "left_neighbor_logit": -106.97418212890625,
+          "right_neighbor_logit": -107.4765396118164,
+          "margin_at": -0.7004814147949219
+        },
+        "neutral_0": {
+          "prompt_text": "We have 22 and 22. Output:",
+          "target_logit": -105.32948303222656,
+          "left_neighbor_logit": -106.22160339355469,
+          "right_neighbor_logit": -106.01472473144531,
+          "margin_at": 0.7886810302734375
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 22 and 22. The value is:",
+          "target_logit": -84.36839294433594,
+          "left_neighbor_logit": -83.89593505859375,
+          "right_neighbor_logit": -84.13201141357422,
+          "margin_at": -0.3544197082519531
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 22 and 22. Result:",
+          "target_logit": -83.60102844238281,
+          "left_neighbor_logit": -83.75562286376953,
+          "right_neighbor_logit": -84.48588562011719,
+          "margin_at": 0.5197257995605469
+        },
+        "neutral_3": {
+          "prompt_text": "Given 22 and 22. Value:",
+          "target_logit": -127.59895324707031,
+          "left_neighbor_logit": -127.36483764648438,
+          "right_neighbor_logit": -127.79776763916016,
+          "margin_at": -0.017650604248046875
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "18 + 26 =",
+          "target_logit": -104.4566879272461,
+          "left_neighbor_logit": -104.55986022949219,
+          "right_neighbor_logit": -104.51165771484375,
+          "margin_at": 0.079071044921875
+        },
+        "matched_comma": {
+          "prompt_text": "18, 26,",
+          "target_logit": -139.9193878173828,
+          "left_neighbor_logit": -139.41461181640625,
+          "right_neighbor_logit": -139.54736328125,
+          "margin_at": -0.4384002685546875
+        },
+        "neutral_0": {
+          "prompt_text": "We have 18 and 26. Output:",
+          "target_logit": -109.51785278320312,
+          "left_neighbor_logit": -110.48046112060547,
+          "right_neighbor_logit": -110.13406372070312,
+          "margin_at": 0.7894096374511719
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 18 and 26. The value is:",
+          "target_logit": -94.30786895751953,
+          "left_neighbor_logit": -94.49249267578125,
+          "right_neighbor_logit": -94.18187713623047,
+          "margin_at": 0.029315948486328125
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 18 and 26. Result:",
+          "target_logit": -85.11470031738281,
+          "left_neighbor_logit": -85.42491149902344,
+          "right_neighbor_logit": -85.85651397705078,
+          "margin_at": 0.5260124206542969
+        },
+        "neutral_3": {
+          "prompt_text": "Given 18 and 26. Value:",
+          "target_logit": -134.00479125976562,
+          "left_neighbor_logit": -133.8231201171875,
+          "right_neighbor_logit": -134.15875244140625,
+          "margin_at": -0.01385498046875
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "26 + 18 =",
+          "target_logit": -99.95671081542969,
+          "left_neighbor_logit": -99.97907257080078,
+          "right_neighbor_logit": -99.85235595703125,
+          "margin_at": -0.040996551513671875
+        },
+        "matched_comma": {
+          "prompt_text": "26, 18,",
+          "target_logit": -127.01882934570312,
+          "left_neighbor_logit": -126.90986633300781,
+          "right_neighbor_logit": -126.53553009033203,
+          "margin_at": -0.2961311340332031
+        },
+        "neutral_0": {
+          "prompt_text": "We have 26 and 18. Output:",
+          "target_logit": -108.60238647460938,
+          "left_neighbor_logit": -109.59642028808594,
+          "right_neighbor_logit": -109.17315673828125,
+          "margin_at": 0.7824020385742188
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 26 and 18. The value is:",
+          "target_logit": -91.71646118164062,
+          "left_neighbor_logit": -91.82889556884766,
+          "right_neighbor_logit": -91.89886474609375,
+          "margin_at": 0.14741897583007812
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 26 and 18. Result:",
+          "target_logit": -85.52434539794922,
+          "left_neighbor_logit": -85.85706329345703,
+          "right_neighbor_logit": -86.23397827148438,
+          "margin_at": 0.5211753845214844
+        },
+        "neutral_3": {
+          "prompt_text": "Given 26 and 18. Value:",
+          "target_logit": -133.1395721435547,
+          "left_neighbor_logit": -132.96665954589844,
+          "right_neighbor_logit": -133.33497619628906,
+          "margin_at": 0.0112457275390625
+        }
+      }
+    }
+  },
+  {
+    "target": 52,
+    "target_token_id": 6740,
+    "stratum": "low",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "26 + 26 =",
+          "target_logit": -100.95372009277344,
+          "left_neighbor_logit": -101.11106872558594,
+          "right_neighbor_logit": -101.5412826538086,
+          "margin_at": 0.3724555969238281
+        },
+        "matched_comma": {
+          "prompt_text": "26, 26,",
+          "target_logit": -121.47445678710938,
+          "left_neighbor_logit": -121.4161376953125,
+          "right_neighbor_logit": -122.48442077636719,
+          "margin_at": 0.47582244873046875
+        },
+        "neutral_0": {
+          "prompt_text": "We have 26 and 26. Output:",
+          "target_logit": -107.29512786865234,
+          "left_neighbor_logit": -107.93992614746094,
+          "right_neighbor_logit": -107.9803466796875,
+          "margin_at": 0.665008544921875
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 26 and 26. The value is:",
+          "target_logit": -85.86841583251953,
+          "left_neighbor_logit": -85.95733642578125,
+          "right_neighbor_logit": -87.05799865722656,
+          "margin_at": 0.639251708984375
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 26 and 26. Result:",
+          "target_logit": -85.28150177001953,
+          "left_neighbor_logit": -85.99161529541016,
+          "right_neighbor_logit": -85.86924743652344,
+          "margin_at": 0.6489295959472656
+        },
+        "neutral_3": {
+          "prompt_text": "Given 26 and 26. Value:",
+          "target_logit": -131.5069122314453,
+          "left_neighbor_logit": -131.67123413085938,
+          "right_neighbor_logit": -131.9049072265625,
+          "margin_at": 0.281158447265625
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "22 + 30 =",
+          "target_logit": -97.82120513916016,
+          "left_neighbor_logit": -98.1170654296875,
+          "right_neighbor_logit": -98.3173599243164,
+          "margin_at": 0.3960075378417969
+        },
+        "matched_comma": {
+          "prompt_text": "22, 30,",
+          "target_logit": -113.46714782714844,
+          "left_neighbor_logit": -113.23190307617188,
+          "right_neighbor_logit": -113.32151794433594,
+          "margin_at": -0.19043731689453125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 22 and 30. Output:",
+          "target_logit": -111.17593383789062,
+          "left_neighbor_logit": -111.83946990966797,
+          "right_neighbor_logit": -111.68879699707031,
+          "margin_at": 0.5881996154785156
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 22 and 30. The value is:",
+          "target_logit": -86.97015380859375,
+          "left_neighbor_logit": -87.73709106445312,
+          "right_neighbor_logit": -87.62574768066406,
+          "margin_at": 0.7112655639648438
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 22 and 30. Result:",
+          "target_logit": -84.1690673828125,
+          "left_neighbor_logit": -85.12400817871094,
+          "right_neighbor_logit": -84.53086853027344,
+          "margin_at": 0.6583709716796875
+        },
+        "neutral_3": {
+          "prompt_text": "Given 22 and 30. Value:",
+          "target_logit": -127.98442840576172,
+          "left_neighbor_logit": -128.30227661132812,
+          "right_neighbor_logit": -128.4222412109375,
+          "margin_at": 0.37783050537109375
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "30 + 22 =",
+          "target_logit": -105.45420837402344,
+          "left_neighbor_logit": -105.98117065429688,
+          "right_neighbor_logit": -105.83969116210938,
+          "margin_at": 0.4562225341796875
+        },
+        "matched_comma": {
+          "prompt_text": "30, 22,",
+          "target_logit": -146.73898315429688,
+          "left_neighbor_logit": -147.2616729736328,
+          "right_neighbor_logit": -145.52230834960938,
+          "margin_at": -0.34699249267578125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 30 and 22. Output:",
+          "target_logit": -108.67347717285156,
+          "left_neighbor_logit": -109.41815185546875,
+          "right_neighbor_logit": -109.17530822753906,
+          "margin_at": 0.6232528686523438
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 30 and 22. The value is:",
+          "target_logit": -90.63372039794922,
+          "left_neighbor_logit": -91.26998138427734,
+          "right_neighbor_logit": -91.3766860961914,
+          "margin_at": 0.6896133422851562
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 30 and 22. Result:",
+          "target_logit": -80.63375854492188,
+          "left_neighbor_logit": -81.51085662841797,
+          "right_neighbor_logit": -80.9177474975586,
+          "margin_at": 0.5805435180664062
+        },
+        "neutral_3": {
+          "prompt_text": "Given 30 and 22. Value:",
+          "target_logit": -127.93089294433594,
+          "left_neighbor_logit": -128.25634765625,
+          "right_neighbor_logit": -128.3404541015625,
+          "margin_at": 0.3675079345703125
+        }
+      }
+    }
+  },
+  {
+    "target": 62,
+    "target_token_id": 8190,
+    "stratum": "mid",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "31 + 31 =",
+          "target_logit": -100.71356201171875,
+          "left_neighbor_logit": -100.56329345703125,
+          "right_neighbor_logit": -100.40068054199219,
+          "margin_at": -0.23157501220703125
+        },
+        "matched_comma": {
+          "prompt_text": "31, 31,",
+          "target_logit": -92.12063598632812,
+          "left_neighbor_logit": -92.22583770751953,
+          "right_neighbor_logit": -92.32807922363281,
+          "margin_at": 0.15632247924804688
+        },
+        "neutral_0": {
+          "prompt_text": "We have 31 and 31. Output:",
+          "target_logit": -102.87333679199219,
+          "left_neighbor_logit": -102.91268920898438,
+          "right_neighbor_logit": -102.49268341064453,
+          "margin_at": -0.17065048217773438
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 31 and 31. The value is:",
+          "target_logit": -81.43241882324219,
+          "left_neighbor_logit": -80.83389282226562,
+          "right_neighbor_logit": -81.10879516601562,
+          "margin_at": -0.4610748291015625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 31 and 31. Result:",
+          "target_logit": -83.73579406738281,
+          "left_neighbor_logit": -83.63139343261719,
+          "right_neighbor_logit": -82.90696716308594,
+          "margin_at": -0.46661376953125
+        },
+        "neutral_3": {
+          "prompt_text": "Given 31 and 31. Value:",
+          "target_logit": -118.94631958007812,
+          "left_neighbor_logit": -118.61592864990234,
+          "right_neighbor_logit": -118.56765747070312,
+          "margin_at": -0.3545265197753906
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "27 + 35 =",
+          "target_logit": -100.1246109008789,
+          "left_neighbor_logit": -100.39140319824219,
+          "right_neighbor_logit": -100.00039672851562,
+          "margin_at": 0.0712890625
+        },
+        "matched_comma": {
+          "prompt_text": "27, 35,",
+          "target_logit": -118.385498046875,
+          "left_neighbor_logit": -118.25759887695312,
+          "right_neighbor_logit": -118.99169921875,
+          "margin_at": 0.2391510009765625
+        },
+        "neutral_0": {
+          "prompt_text": "We have 27 and 35. Output:",
+          "target_logit": -113.66899108886719,
+          "left_neighbor_logit": -114.09498596191406,
+          "right_neighbor_logit": -113.38337707519531,
+          "margin_at": 0.0701904296875
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 27 and 35. The value is:",
+          "target_logit": -94.09162902832031,
+          "left_neighbor_logit": -93.98252868652344,
+          "right_neighbor_logit": -93.50996398925781,
+          "margin_at": -0.3453826904296875
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 27 and 35. Result:",
+          "target_logit": -86.65760803222656,
+          "left_neighbor_logit": -86.95144653320312,
+          "right_neighbor_logit": -86.05094909667969,
+          "margin_at": -0.15641021728515625
+        },
+        "neutral_3": {
+          "prompt_text": "Given 27 and 35. Value:",
+          "target_logit": -129.5074920654297,
+          "left_neighbor_logit": -129.5032958984375,
+          "right_neighbor_logit": -129.0522918701172,
+          "margin_at": -0.22969818115234375
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "35 + 27 =",
+          "target_logit": -106.41213989257812,
+          "left_neighbor_logit": -106.60209655761719,
+          "right_neighbor_logit": -106.171142578125,
+          "margin_at": -0.02552032470703125
+        },
+        "matched_comma": {
+          "prompt_text": "35, 27,",
+          "target_logit": -136.22267150878906,
+          "left_neighbor_logit": -136.62261962890625,
+          "right_neighbor_logit": -136.3567352294922,
+          "margin_at": 0.26700592041015625
+        },
+        "neutral_0": {
+          "prompt_text": "We have 35 and 27. Output:",
+          "target_logit": -113.57306671142578,
+          "left_neighbor_logit": -114.04682922363281,
+          "right_neighbor_logit": -113.316162109375,
+          "margin_at": 0.108428955078125
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 35 and 27. The value is:",
+          "target_logit": -97.562255859375,
+          "left_neighbor_logit": -97.61643981933594,
+          "right_neighbor_logit": -97.20126342773438,
+          "margin_at": -0.15340423583984375
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 35 and 27. Result:",
+          "target_logit": -84.52174377441406,
+          "left_neighbor_logit": -84.91472625732422,
+          "right_neighbor_logit": -83.97749328613281,
+          "margin_at": -0.07563400268554688
+        },
+        "neutral_3": {
+          "prompt_text": "Given 35 and 27. Value:",
+          "target_logit": -129.27537536621094,
+          "left_neighbor_logit": -129.29827880859375,
+          "right_neighbor_logit": -128.87802124023438,
+          "margin_at": -0.187225341796875
+        }
+      }
+    }
+  },
+  {
+    "target": 64,
+    "target_token_id": 5598,
+    "stratum": "mid",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "32 + 32 =",
+          "target_logit": -89.115234375,
+          "left_neighbor_logit": -91.62096405029297,
+          "right_neighbor_logit": -92.00294494628906,
+          "margin_at": 2.6967201232910156
+        },
+        "matched_comma": {
+          "prompt_text": "32, 32,",
+          "target_logit": -81.83161163330078,
+          "left_neighbor_logit": -86.28703308105469,
+          "right_neighbor_logit": -86.37926483154297,
+          "margin_at": 4.501537322998047
+        },
+        "neutral_0": {
+          "prompt_text": "We have 32 and 32. Output:",
+          "target_logit": -92.58644104003906,
+          "left_neighbor_logit": -94.39774322509766,
+          "right_neighbor_logit": -94.72941589355469,
+          "margin_at": 1.9771385192871094
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 32 and 32. The value is:",
+          "target_logit": -77.0112075805664,
+          "left_neighbor_logit": -79.48678588867188,
+          "right_neighbor_logit": -79.98841857910156,
+          "margin_at": 2.7263946533203125
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 32 and 32. Result:",
+          "target_logit": -76.90093994140625,
+          "left_neighbor_logit": -79.59138488769531,
+          "right_neighbor_logit": -80.50578308105469,
+          "margin_at": 3.14764404296875
+        },
+        "neutral_3": {
+          "prompt_text": "Given 32 and 32. Value:",
+          "target_logit": -115.7768325805664,
+          "left_neighbor_logit": -117.0491943359375,
+          "right_neighbor_logit": -117.76473999023438,
+          "margin_at": 1.6301345825195312
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "28 + 36 =",
+          "target_logit": -101.3393325805664,
+          "left_neighbor_logit": -101.30555725097656,
+          "right_neighbor_logit": -101.72262573242188,
+          "margin_at": 0.1747589111328125
+        },
+        "matched_comma": {
+          "prompt_text": "28, 36,",
+          "target_logit": -123.84208679199219,
+          "left_neighbor_logit": -123.29930114746094,
+          "right_neighbor_logit": -123.68463134765625,
+          "margin_at": -0.35012054443359375
+        },
+        "neutral_0": {
+          "prompt_text": "We have 28 and 36. Output:",
+          "target_logit": -108.04359436035156,
+          "left_neighbor_logit": -108.7410888671875,
+          "right_neighbor_logit": -108.93126678466797,
+          "margin_at": 0.7925834655761719
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 28 and 36. The value is:",
+          "target_logit": -90.6083755493164,
+          "left_neighbor_logit": -90.72201538085938,
+          "right_neighbor_logit": -91.31144714355469,
+          "margin_at": 0.408355712890625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 28 and 36. Result:",
+          "target_logit": -82.22601318359375,
+          "left_neighbor_logit": -83.56245422363281,
+          "right_neighbor_logit": -84.47276306152344,
+          "margin_at": 1.791595458984375
+        },
+        "neutral_3": {
+          "prompt_text": "Given 28 and 36. Value:",
+          "target_logit": -129.16439819335938,
+          "left_neighbor_logit": -128.92507934570312,
+          "right_neighbor_logit": -129.38970947265625,
+          "margin_at": -0.0070037841796875
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "36 + 28 =",
+          "target_logit": -103.52558135986328,
+          "left_neighbor_logit": -103.393798828125,
+          "right_neighbor_logit": -103.779296875,
+          "margin_at": 0.06096649169921875
+        },
+        "matched_comma": {
+          "prompt_text": "36, 28,",
+          "target_logit": -130.24118041992188,
+          "left_neighbor_logit": -130.24305725097656,
+          "right_neighbor_logit": -130.43763732910156,
+          "margin_at": 0.0991668701171875
+        },
+        "neutral_0": {
+          "prompt_text": "We have 36 and 28. Output:",
+          "target_logit": -110.03714752197266,
+          "left_neighbor_logit": -110.59322357177734,
+          "right_neighbor_logit": -110.79147338867188,
+          "margin_at": 0.6552009582519531
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 36 and 28. The value is:",
+          "target_logit": -91.64109802246094,
+          "left_neighbor_logit": -91.90135192871094,
+          "right_neighbor_logit": -92.3272933959961,
+          "margin_at": 0.4732246398925781
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 36 and 28. Result:",
+          "target_logit": -79.98837280273438,
+          "left_neighbor_logit": -81.32380676269531,
+          "right_neighbor_logit": -82.26777648925781,
+          "margin_at": 1.8074188232421875
+        },
+        "neutral_3": {
+          "prompt_text": "Given 36 and 28. Value:",
+          "target_logit": -129.45700073242188,
+          "left_neighbor_logit": -129.2210235595703,
+          "right_neighbor_logit": -129.6564178466797,
+          "margin_at": -0.018280029296875
+        }
+      }
+    }
+  },
+  {
+    "target": 66,
+    "target_token_id": 7930,
+    "stratum": "mid",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "33 + 33 =",
+          "target_logit": -103.74366760253906,
+          "left_neighbor_logit": -104.10858917236328,
+          "right_neighbor_logit": -103.8267593383789,
+          "margin_at": 0.22400665283203125
+        },
+        "matched_comma": {
+          "prompt_text": "33, 33,",
+          "target_logit": -100.80766296386719,
+          "left_neighbor_logit": -101.04281616210938,
+          "right_neighbor_logit": -100.04951477050781,
+          "margin_at": -0.26149749755859375
+        },
+        "neutral_0": {
+          "prompt_text": "We have 33 and 33. Output:",
+          "target_logit": -108.11753845214844,
+          "left_neighbor_logit": -108.30658721923828,
+          "right_neighbor_logit": -108.18488311767578,
+          "margin_at": 0.12819671630859375
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 33 and 33. The value is:",
+          "target_logit": -87.90055847167969,
+          "left_neighbor_logit": -88.1322021484375,
+          "right_neighbor_logit": -87.82431030273438,
+          "margin_at": 0.07769775390625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 33 and 33. Result:",
+          "target_logit": -83.3438720703125,
+          "left_neighbor_logit": -83.7452392578125,
+          "right_neighbor_logit": -83.1871109008789,
+          "margin_at": 0.12230300903320312
+        },
+        "neutral_3": {
+          "prompt_text": "Given 33 and 33. Value:",
+          "target_logit": -128.6079864501953,
+          "left_neighbor_logit": -128.562744140625,
+          "right_neighbor_logit": -128.5079803466797,
+          "margin_at": -0.07262420654296875
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "29 + 37 =",
+          "target_logit": -106.09004974365234,
+          "left_neighbor_logit": -106.24310302734375,
+          "right_neighbor_logit": -106.03864288330078,
+          "margin_at": 0.050823211669921875
+        },
+        "matched_comma": {
+          "prompt_text": "29, 37,",
+          "target_logit": -127.57096862792969,
+          "left_neighbor_logit": -127.41098022460938,
+          "right_neighbor_logit": -126.93739318847656,
+          "margin_at": -0.39678192138671875
+        },
+        "neutral_0": {
+          "prompt_text": "We have 29 and 37. Output:",
+          "target_logit": -111.34532165527344,
+          "left_neighbor_logit": -111.47900390625,
+          "right_neighbor_logit": -111.42569732666016,
+          "margin_at": 0.10702896118164062
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 29 and 37. The value is:",
+          "target_logit": -93.39915466308594,
+          "left_neighbor_logit": -93.57811737060547,
+          "right_neighbor_logit": -93.2918701171875,
+          "margin_at": 0.035839080810546875
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 29 and 37. Result:",
+          "target_logit": -87.51923370361328,
+          "left_neighbor_logit": -87.7331314086914,
+          "right_neighbor_logit": -87.31798553466797,
+          "margin_at": 0.00632476806640625
+        },
+        "neutral_3": {
+          "prompt_text": "Given 29 and 37. Value:",
+          "target_logit": -130.060791015625,
+          "left_neighbor_logit": -130.10671997070312,
+          "right_neighbor_logit": -129.8829345703125,
+          "margin_at": -0.0659637451171875
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "37 + 29 =",
+          "target_logit": -97.53130340576172,
+          "left_neighbor_logit": -97.7037582397461,
+          "right_neighbor_logit": -97.62031555175781,
+          "margin_at": 0.13073348999023438
+        },
+        "matched_comma": {
+          "prompt_text": "37, 29,",
+          "target_logit": -124.73683166503906,
+          "left_neighbor_logit": -123.80245208740234,
+          "right_neighbor_logit": -124.63890075683594,
+          "margin_at": -0.5161552429199219
+        },
+        "neutral_0": {
+          "prompt_text": "We have 37 and 29. Output:",
+          "target_logit": -113.90470886230469,
+          "left_neighbor_logit": -114.03253173828125,
+          "right_neighbor_logit": -113.96820068359375,
+          "margin_at": 0.0956573486328125
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 37 and 29. The value is:",
+          "target_logit": -94.04486083984375,
+          "left_neighbor_logit": -94.30375671386719,
+          "right_neighbor_logit": -93.86717224121094,
+          "margin_at": 0.0406036376953125
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 37 and 29. Result:",
+          "target_logit": -86.09574127197266,
+          "left_neighbor_logit": -86.35171508789062,
+          "right_neighbor_logit": -85.8616943359375,
+          "margin_at": 0.01096343994140625
+        },
+        "neutral_3": {
+          "prompt_text": "Given 37 and 29. Value:",
+          "target_logit": -129.82861328125,
+          "left_neighbor_logit": -129.84326171875,
+          "right_neighbor_logit": -129.6837615966797,
+          "margin_at": -0.06510162353515625
+        }
+      }
+    }
+  },
+  {
+    "target": 76,
+    "target_token_id": 8684,
+    "stratum": "mid",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "38 + 38 =",
+          "target_logit": -105.10713195800781,
+          "left_neighbor_logit": -105.22693634033203,
+          "right_neighbor_logit": -104.9555892944336,
+          "margin_at": -0.015869140625
+        },
+        "matched_comma": {
+          "prompt_text": "38, 38,",
+          "target_logit": -90.26290893554688,
+          "left_neighbor_logit": -90.78411865234375,
+          "right_neighbor_logit": -88.91423034667969,
+          "margin_at": -0.41373443603515625
+        },
+        "neutral_0": {
+          "prompt_text": "We have 38 and 38. Output:",
+          "target_logit": -107.77323913574219,
+          "left_neighbor_logit": -107.89466857910156,
+          "right_neighbor_logit": -108.1864013671875,
+          "margin_at": 0.26729583740234375
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 38 and 38. The value is:",
+          "target_logit": -90.39305114746094,
+          "left_neighbor_logit": -90.42328643798828,
+          "right_neighbor_logit": -89.95962524414062,
+          "margin_at": -0.20159530639648438
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 38 and 38. Result:",
+          "target_logit": -84.42680358886719,
+          "left_neighbor_logit": -84.87300109863281,
+          "right_neighbor_logit": -84.12788391113281,
+          "margin_at": 0.073638916015625
+        },
+        "neutral_3": {
+          "prompt_text": "Given 38 and 38. Value:",
+          "target_logit": -122.40122985839844,
+          "left_neighbor_logit": -122.35125732421875,
+          "right_neighbor_logit": -122.64213562011719,
+          "margin_at": 0.09546661376953125
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "34 + 42 =",
+          "target_logit": -108.00223541259766,
+          "left_neighbor_logit": -107.7299575805664,
+          "right_neighbor_logit": -107.94500732421875,
+          "margin_at": -0.16475296020507812
+        },
+        "matched_comma": {
+          "prompt_text": "34, 42,",
+          "target_logit": -131.34405517578125,
+          "left_neighbor_logit": -130.7843475341797,
+          "right_neighbor_logit": -130.63760375976562,
+          "margin_at": -0.6330795288085938
+        },
+        "neutral_0": {
+          "prompt_text": "We have 34 and 42. Output:",
+          "target_logit": -112.25956726074219,
+          "left_neighbor_logit": -112.27900695800781,
+          "right_neighbor_logit": -112.73432922363281,
+          "margin_at": 0.247100830078125
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 34 and 42. The value is:",
+          "target_logit": -91.53912353515625,
+          "left_neighbor_logit": -91.304931640625,
+          "right_neighbor_logit": -91.85730743408203,
+          "margin_at": 0.041996002197265625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 34 and 42. Result:",
+          "target_logit": -84.04093933105469,
+          "left_neighbor_logit": -84.2137222290039,
+          "right_neighbor_logit": -84.10346221923828,
+          "margin_at": 0.11765289306640625
+        },
+        "neutral_3": {
+          "prompt_text": "Given 34 and 42. Value:",
+          "target_logit": -126.87881469726562,
+          "left_neighbor_logit": -126.86846923828125,
+          "right_neighbor_logit": -127.33464050292969,
+          "margin_at": 0.22274017333984375
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "42 + 34 =",
+          "target_logit": -99.37163543701172,
+          "left_neighbor_logit": -99.17742919921875,
+          "right_neighbor_logit": -99.42283630371094,
+          "margin_at": -0.071502685546875
+        },
+        "matched_comma": {
+          "prompt_text": "42, 34,",
+          "target_logit": -129.26486206054688,
+          "left_neighbor_logit": -128.4575958251953,
+          "right_neighbor_logit": -128.97622680664062,
+          "margin_at": -0.5479507446289062
+        },
+        "neutral_0": {
+          "prompt_text": "We have 42 and 34. Output:",
+          "target_logit": -113.34459686279297,
+          "left_neighbor_logit": -113.25643920898438,
+          "right_neighbor_logit": -113.79668426513672,
+          "margin_at": 0.18196487426757812
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 42 and 34. The value is:",
+          "target_logit": -93.94244384765625,
+          "left_neighbor_logit": -93.52336120605469,
+          "right_neighbor_logit": -94.02328491210938,
+          "margin_at": -0.16912078857421875
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 42 and 34. Result:",
+          "target_logit": -87.34806823730469,
+          "left_neighbor_logit": -87.47295379638672,
+          "right_neighbor_logit": -87.34724426269531,
+          "margin_at": 0.062030792236328125
+        },
+        "neutral_3": {
+          "prompt_text": "Given 42 and 34. Value:",
+          "target_logit": -129.90785217285156,
+          "left_neighbor_logit": -129.82278442382812,
+          "right_neighbor_logit": -130.32823181152344,
+          "margin_at": 0.16765594482421875
+        }
+      }
+    }
+  },
+  {
+    "target": 82,
+    "target_token_id": 9415,
+    "stratum": "high",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "41 + 41 =",
+          "target_logit": -111.52669525146484,
+          "left_neighbor_logit": -111.27924346923828,
+          "right_neighbor_logit": -111.69779968261719,
+          "margin_at": -0.038173675537109375
+        },
+        "matched_comma": {
+          "prompt_text": "41, 41,",
+          "target_logit": -91.92572784423828,
+          "left_neighbor_logit": -91.09867858886719,
+          "right_neighbor_logit": -92.02873229980469,
+          "margin_at": -0.36202239990234375
+        },
+        "neutral_0": {
+          "prompt_text": "We have 41 and 41. Output:",
+          "target_logit": -111.24554443359375,
+          "left_neighbor_logit": -110.92493438720703,
+          "right_neighbor_logit": -110.83293151855469,
+          "margin_at": -0.3666114807128906
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 41 and 41. The value is:",
+          "target_logit": -90.18360900878906,
+          "left_neighbor_logit": -89.33169555664062,
+          "right_neighbor_logit": -90.14579772949219,
+          "margin_at": -0.44486236572265625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 41 and 41. Result:",
+          "target_logit": -84.6978759765625,
+          "left_neighbor_logit": -84.115478515625,
+          "right_neighbor_logit": -84.1951675415039,
+          "margin_at": -0.5425529479980469
+        },
+        "neutral_3": {
+          "prompt_text": "Given 41 and 41. Value:",
+          "target_logit": -122.30387115478516,
+          "left_neighbor_logit": -121.79814147949219,
+          "right_neighbor_logit": -122.10469818115234,
+          "margin_at": -0.3524513244628906
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "37 + 45 =",
+          "target_logit": -105.26227569580078,
+          "left_neighbor_logit": -105.6057357788086,
+          "right_neighbor_logit": -105.53562927246094,
+          "margin_at": 0.3084068298339844
+        },
+        "matched_comma": {
+          "prompt_text": "37, 45,",
+          "target_logit": -121.71278381347656,
+          "left_neighbor_logit": -121.87549591064453,
+          "right_neighbor_logit": -122.13111877441406,
+          "margin_at": 0.2905235290527344
+        },
+        "neutral_0": {
+          "prompt_text": "We have 37 and 45. Output:",
+          "target_logit": -113.40741729736328,
+          "left_neighbor_logit": -113.51673889160156,
+          "right_neighbor_logit": -113.00586700439453,
+          "margin_at": -0.14611434936523438
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 37 and 45. The value is:",
+          "target_logit": -94.08564758300781,
+          "left_neighbor_logit": -93.929443359375,
+          "right_neighbor_logit": -93.70024108886719,
+          "margin_at": -0.27080535888671875
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 37 and 45. Result:",
+          "target_logit": -84.42996215820312,
+          "left_neighbor_logit": -84.36021423339844,
+          "right_neighbor_logit": -83.99148559570312,
+          "margin_at": -0.25411224365234375
+        },
+        "neutral_3": {
+          "prompt_text": "Given 37 and 45. Value:",
+          "target_logit": -126.20834350585938,
+          "left_neighbor_logit": -126.15852355957031,
+          "right_neighbor_logit": -125.97953033447266,
+          "margin_at": -0.13931655883789062
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "45 + 37 =",
+          "target_logit": -107.83978271484375,
+          "left_neighbor_logit": -108.08057403564453,
+          "right_neighbor_logit": -107.96076965332031,
+          "margin_at": 0.18088912963867188
+        },
+        "matched_comma": {
+          "prompt_text": "45, 37,",
+          "target_logit": -122.33106231689453,
+          "left_neighbor_logit": -122.65470123291016,
+          "right_neighbor_logit": -122.29135131835938,
+          "margin_at": 0.14196395874023438
+        },
+        "neutral_0": {
+          "prompt_text": "We have 45 and 37. Output:",
+          "target_logit": -112.97161865234375,
+          "left_neighbor_logit": -113.10066986083984,
+          "right_neighbor_logit": -112.6180191040039,
+          "margin_at": -0.112274169921875
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 45 and 37. The value is:",
+          "target_logit": -96.70753479003906,
+          "left_neighbor_logit": -96.71481323242188,
+          "right_neighbor_logit": -96.60253143310547,
+          "margin_at": -0.048862457275390625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 45 and 37. Result:",
+          "target_logit": -84.06483459472656,
+          "left_neighbor_logit": -84.02891540527344,
+          "right_neighbor_logit": -83.67288970947266,
+          "margin_at": -0.21393203735351562
+        },
+        "neutral_3": {
+          "prompt_text": "Given 45 and 37. Value:",
+          "target_logit": -124.15325164794922,
+          "left_neighbor_logit": -124.15043640136719,
+          "right_neighbor_logit": -123.9449234008789,
+          "margin_at": -0.10557174682617188
+        }
+      }
+    }
+  },
+  {
+    "target": 88,
+    "target_token_id": 9193,
+    "stratum": "high",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "44 + 44 =",
+          "target_logit": -105.21527099609375,
+          "left_neighbor_logit": -105.99954986572266,
+          "right_neighbor_logit": -105.24285888671875,
+          "margin_at": 0.4059333801269531
+        },
+        "matched_comma": {
+          "prompt_text": "44, 44,",
+          "target_logit": -99.46385955810547,
+          "left_neighbor_logit": -101.03746032714844,
+          "right_neighbor_logit": -99.73716735839844,
+          "margin_at": 0.9234542846679688
+        },
+        "neutral_0": {
+          "prompt_text": "We have 44 and 44. Output:",
+          "target_logit": -104.43916320800781,
+          "left_neighbor_logit": -105.33840942382812,
+          "right_neighbor_logit": -105.30548858642578,
+          "margin_at": 0.8827857971191406
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 44 and 44. The value is:",
+          "target_logit": -90.0957260131836,
+          "left_neighbor_logit": -90.91329956054688,
+          "right_neighbor_logit": -89.92524719238281,
+          "margin_at": 0.32354736328125
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 44 and 44. Result:",
+          "target_logit": -81.99000549316406,
+          "left_neighbor_logit": -83.25643920898438,
+          "right_neighbor_logit": -82.721923828125,
+          "margin_at": 0.999176025390625
+        },
+        "neutral_3": {
+          "prompt_text": "Given 44 and 44. Value:",
+          "target_logit": -120.99649810791016,
+          "left_neighbor_logit": -121.24273681640625,
+          "right_neighbor_logit": -120.6826171875,
+          "margin_at": -0.03382110595703125
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "40 + 48 =",
+          "target_logit": -106.00466918945312,
+          "left_neighbor_logit": -106.45315551757812,
+          "right_neighbor_logit": -105.96380615234375,
+          "margin_at": 0.2038116455078125
+        },
+        "matched_comma": {
+          "prompt_text": "40, 48,",
+          "target_logit": -130.8924560546875,
+          "left_neighbor_logit": -131.73773193359375,
+          "right_neighbor_logit": -130.66429138183594,
+          "margin_at": 0.30855560302734375
+        },
+        "neutral_0": {
+          "prompt_text": "We have 40 and 48. Output:",
+          "target_logit": -106.91172790527344,
+          "left_neighbor_logit": -107.7268295288086,
+          "right_neighbor_logit": -108.05110168457031,
+          "margin_at": 0.9772377014160156
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 40 and 48. The value is:",
+          "target_logit": -92.47502136230469,
+          "left_neighbor_logit": -92.96973419189453,
+          "right_neighbor_logit": -92.87770080566406,
+          "margin_at": 0.4486961364746094
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 40 and 48. Result:",
+          "target_logit": -79.06036376953125,
+          "left_neighbor_logit": -79.99880981445312,
+          "right_neighbor_logit": -79.93598175048828,
+          "margin_at": 0.9070320129394531
+        },
+        "neutral_3": {
+          "prompt_text": "Given 40 and 48. Value:",
+          "target_logit": -126.42477416992188,
+          "left_neighbor_logit": -126.64500427246094,
+          "right_neighbor_logit": -126.322509765625,
+          "margin_at": 0.05898284912109375
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "48 + 40 =",
+          "target_logit": -104.26931762695312,
+          "left_neighbor_logit": -104.59526062011719,
+          "right_neighbor_logit": -104.49183654785156,
+          "margin_at": 0.27423095703125
+        },
+        "matched_comma": {
+          "prompt_text": "48, 40,",
+          "target_logit": -116.44466400146484,
+          "left_neighbor_logit": -116.56100463867188,
+          "right_neighbor_logit": -116.91415405273438,
+          "margin_at": 0.29291534423828125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 48 and 40. Output:",
+          "target_logit": -112.2367172241211,
+          "left_neighbor_logit": -113.05885314941406,
+          "right_neighbor_logit": -113.37833404541016,
+          "margin_at": 0.9818763732910156
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 48 and 40. The value is:",
+          "target_logit": -92.34431457519531,
+          "left_neighbor_logit": -93.10855102539062,
+          "right_neighbor_logit": -92.64572143554688,
+          "margin_at": 0.5328216552734375
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 48 and 40. Result:",
+          "target_logit": -81.22113800048828,
+          "left_neighbor_logit": -82.13787078857422,
+          "right_neighbor_logit": -81.95864868164062,
+          "margin_at": 0.8271217346191406
+        },
+        "neutral_3": {
+          "prompt_text": "Given 48 and 40. Value:",
+          "target_logit": -122.83929443359375,
+          "left_neighbor_logit": -123.0340576171875,
+          "right_neighbor_logit": -122.65908813476562,
+          "margin_at": 0.0072784423828125
+        }
+      }
+    }
+  },
+  {
+    "target": 92,
+    "target_token_id": 10190,
+    "stratum": "high",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "46 + 46 =",
+          "target_logit": -108.74191284179688,
+          "left_neighbor_logit": -108.51466369628906,
+          "right_neighbor_logit": -109.00558471679688,
+          "margin_at": 0.01821136474609375
+        },
+        "matched_comma": {
+          "prompt_text": "46, 46,",
+          "target_logit": -101.21440887451172,
+          "left_neighbor_logit": -100.98489379882812,
+          "right_neighbor_logit": -101.91444396972656,
+          "margin_at": 0.235260009765625
+        },
+        "neutral_0": {
+          "prompt_text": "We have 46 and 46. Output:",
+          "target_logit": -106.33810424804688,
+          "left_neighbor_logit": -106.86123657226562,
+          "right_neighbor_logit": -106.63189697265625,
+          "margin_at": 0.4084625244140625
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 46 and 46. The value is:",
+          "target_logit": -93.68865966796875,
+          "left_neighbor_logit": -93.51039123535156,
+          "right_neighbor_logit": -94.078369140625,
+          "margin_at": 0.10572052001953125
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 46 and 46. Result:",
+          "target_logit": -83.6484375,
+          "left_neighbor_logit": -84.14923095703125,
+          "right_neighbor_logit": -84.17498779296875,
+          "margin_at": 0.513671875
+        },
+        "neutral_3": {
+          "prompt_text": "Given 46 and 46. Value:",
+          "target_logit": -124.52198028564453,
+          "left_neighbor_logit": -124.73281860351562,
+          "right_neighbor_logit": -124.65867614746094,
+          "margin_at": 0.17376708984375
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "42 + 50 =",
+          "target_logit": -99.61000061035156,
+          "left_neighbor_logit": -99.58711242675781,
+          "right_neighbor_logit": -99.64973449707031,
+          "margin_at": 0.0084228515625
+        },
+        "matched_comma": {
+          "prompt_text": "42, 50,",
+          "target_logit": -108.00391387939453,
+          "left_neighbor_logit": -107.77378845214844,
+          "right_neighbor_logit": -108.55831909179688,
+          "margin_at": 0.162139892578125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 42 and 50. Output:",
+          "target_logit": -116.49624633789062,
+          "left_neighbor_logit": -117.06168365478516,
+          "right_neighbor_logit": -116.72187805175781,
+          "margin_at": 0.3955345153808594
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 42 and 50. The value is:",
+          "target_logit": -90.8275146484375,
+          "left_neighbor_logit": -91.31978607177734,
+          "right_neighbor_logit": -91.5328598022461,
+          "margin_at": 0.5988082885742188
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 42 and 50. Result:",
+          "target_logit": -84.23841857910156,
+          "left_neighbor_logit": -84.87225341796875,
+          "right_neighbor_logit": -84.77650451660156,
+          "margin_at": 0.5859603881835938
+        },
+        "neutral_3": {
+          "prompt_text": "Given 42 and 50. Value:",
+          "target_logit": -125.19254302978516,
+          "left_neighbor_logit": -125.52304077148438,
+          "right_neighbor_logit": -125.38652038574219,
+          "margin_at": 0.262237548828125
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "50 + 42 =",
+          "target_logit": -112.6899185180664,
+          "left_neighbor_logit": -112.87413024902344,
+          "right_neighbor_logit": -113.05546569824219,
+          "margin_at": 0.27487945556640625
+        },
+        "matched_comma": {
+          "prompt_text": "50, 42,",
+          "target_logit": -130.73013305664062,
+          "left_neighbor_logit": -131.13388061523438,
+          "right_neighbor_logit": -130.7677001953125,
+          "margin_at": 0.2206573486328125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 50 and 42. Output:",
+          "target_logit": -114.53058624267578,
+          "left_neighbor_logit": -115.09011840820312,
+          "right_neighbor_logit": -114.72681427001953,
+          "margin_at": 0.3778800964355469
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 50 and 42. The value is:",
+          "target_logit": -95.32270812988281,
+          "left_neighbor_logit": -95.58313751220703,
+          "right_neighbor_logit": -95.7190933227539,
+          "margin_at": 0.32840728759765625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 50 and 42. Result:",
+          "target_logit": -79.54181671142578,
+          "left_neighbor_logit": -80.07841491699219,
+          "right_neighbor_logit": -80.0550308227539,
+          "margin_at": 0.5249061584472656
+        },
+        "neutral_3": {
+          "prompt_text": "Given 50 and 42. Value:",
+          "target_logit": -123.69789123535156,
+          "left_neighbor_logit": -124.01753234863281,
+          "right_neighbor_logit": -123.85379028320312,
+          "margin_at": 0.23777008056640625
+        }
+      }
+    }
+  },
+  {
+    "target": 96,
+    "target_token_id": 9907,
+    "stratum": "high",
+    "splits": {
+      "equal": {
+        "arithmetic": {
+          "prompt_text": "48 + 48 =",
+          "target_logit": -101.5176010131836,
+          "left_neighbor_logit": -102.49884033203125,
+          "right_neighbor_logit": -102.35713195800781,
+          "margin_at": 0.9103851318359375
+        },
+        "matched_comma": {
+          "prompt_text": "48, 48,",
+          "target_logit": -94.82786560058594,
+          "left_neighbor_logit": -97.16412353515625,
+          "right_neighbor_logit": -95.95662689208984,
+          "margin_at": 1.7325096130371094
+        },
+        "neutral_0": {
+          "prompt_text": "We have 48 and 48. Output:",
+          "target_logit": -101.56483459472656,
+          "left_neighbor_logit": -103.20298767089844,
+          "right_neighbor_logit": -103.28022766113281,
+          "margin_at": 1.6767730712890625
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 48 and 48. The value is:",
+          "target_logit": -85.77250671386719,
+          "left_neighbor_logit": -87.17546081542969,
+          "right_neighbor_logit": -87.032470703125,
+          "margin_at": 1.3314590454101562
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 48 and 48. Result:",
+          "target_logit": -78.3699951171875,
+          "left_neighbor_logit": -80.1656723022461,
+          "right_neighbor_logit": -79.58029174804688,
+          "margin_at": 1.5029869079589844
+        },
+        "neutral_3": {
+          "prompt_text": "Given 48 and 48. Value:",
+          "target_logit": -119.52430725097656,
+          "left_neighbor_logit": -120.2132568359375,
+          "right_neighbor_logit": -120.59103393554688,
+          "margin_at": 0.877838134765625
+        }
+      },
+      "unequal_order_1": {
+        "arithmetic": {
+          "prompt_text": "44 + 52 =",
+          "target_logit": -103.36349487304688,
+          "left_neighbor_logit": -103.62252044677734,
+          "right_neighbor_logit": -103.60853576660156,
+          "margin_at": 0.2520332336425781
+        },
+        "matched_comma": {
+          "prompt_text": "44, 52,",
+          "target_logit": -124.71456909179688,
+          "left_neighbor_logit": -124.50431823730469,
+          "right_neighbor_logit": -124.29570007324219,
+          "margin_at": -0.3145599365234375
+        },
+        "neutral_0": {
+          "prompt_text": "We have 44 and 52. Output:",
+          "target_logit": -109.01173400878906,
+          "left_neighbor_logit": -109.66691589355469,
+          "right_neighbor_logit": -109.90339660644531,
+          "margin_at": 0.7734222412109375
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 44 and 52. The value is:",
+          "target_logit": -95.21245574951172,
+          "left_neighbor_logit": -95.06515502929688,
+          "right_neighbor_logit": -95.6278076171875,
+          "margin_at": 0.13402557373046875
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 44 and 52. Result:",
+          "target_logit": -85.0365982055664,
+          "left_neighbor_logit": -85.73580932617188,
+          "right_neighbor_logit": -85.65682983398438,
+          "margin_at": 0.6597213745117188
+        },
+        "neutral_3": {
+          "prompt_text": "Given 44 and 52. Value:",
+          "target_logit": -126.90803527832031,
+          "left_neighbor_logit": -126.73187255859375,
+          "right_neighbor_logit": -127.41316223144531,
+          "margin_at": 0.16448211669921875
+        }
+      },
+      "unequal_order_2": {
+        "arithmetic": {
+          "prompt_text": "52 + 44 =",
+          "target_logit": -107.42735290527344,
+          "left_neighbor_logit": -107.58525085449219,
+          "right_neighbor_logit": -107.69274139404297,
+          "margin_at": 0.21164321899414062
+        },
+        "matched_comma": {
+          "prompt_text": "52, 44,",
+          "target_logit": -131.76644897460938,
+          "left_neighbor_logit": -131.2029571533203,
+          "right_neighbor_logit": -131.78329467773438,
+          "margin_at": -0.27332305908203125
+        },
+        "neutral_0": {
+          "prompt_text": "We have 52 and 44. Output:",
+          "target_logit": -113.26943969726562,
+          "left_neighbor_logit": -113.91810607910156,
+          "right_neighbor_logit": -114.11802673339844,
+          "margin_at": 0.748626708984375
+        },
+        "neutral_1": {
+          "prompt_text": "Consider 52 and 44. The value is:",
+          "target_logit": -96.77944946289062,
+          "left_neighbor_logit": -96.56407165527344,
+          "right_neighbor_logit": -96.87199401855469,
+          "margin_at": -0.0614166259765625
+        },
+        "neutral_2": {
+          "prompt_text": "Input: 52 and 44. Result:",
+          "target_logit": -85.900390625,
+          "left_neighbor_logit": -86.52040100097656,
+          "right_neighbor_logit": -86.34740447998047,
+          "margin_at": 0.5335121154785156
+        },
+        "neutral_3": {
+          "prompt_text": "Given 52 and 44. Value:",
+          "target_logit": -128.9842987060547,
+          "left_neighbor_logit": -128.82809448242188,
+          "right_neighbor_logit": -129.49978637695312,
+          "margin_at": 0.1796417236328125
+        }
+      }
+    }
+  }
+]

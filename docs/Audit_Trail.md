@@ -209,10 +209,17 @@ The earlier summary below is historical only. Its per-query response files were 
 - **Registration-label and inference gap:** The result JSON's top-level status marks the decomposition post hoc and outside preregistration, while one key retains the legacy name `primary_preregistered_HC3`. No separate registration record or alternate inferential output is archived. The current reproduction script specifies a standard-normal reference (`use_t=False`) for both robust-covariance procedures. The original statsmodels version and inference setting used to produce the saved p-values were not recorded, so their exact software-level provenance remains unresolved.
 - **Repository effect:** The new results are incorporated into the manuscript and research flow as an exploratory extension in the same study narrative. No existing experimental values were replaced. The target-contrast, prompt-score, and split-manifest input CSVs are archived with the analysis. The result remains exploratory and is not presented as preregistered.
 
-## A35. Separate 11-target held-out summary
+## A35. Separate 11-target score set
 - **Reported targets:** 42, 44, 52, 62, 64, 66, 76, 82, 88, 92, and 96.
-- **Reported aggregate:** Mean equal-minus-unequal margin +0.28234; exact one-sided sign-flip $p=0.175293$; 7/11 positive contrasts.
-- **Provenance limit:** The notebook-reported aggregate and target list are archived in `data/current/eleven_target_summary.csv`. Per-target score rows were not supplied, so the aggregate has not been independently recomputed.
+- **Source records:** The author-supplied `data/current/strict_unused_targets_results.json` contains logits and neighboring-token values for the equal prompt and two ordered unequal controls across six formats for each target. The analysis script verifies the saved margins against these logits and writes per-target and aggregate outputs.
+- **Six-format summary:** Mean equal-minus-unequal contrast +0.2823425; exact one-sided sign-flip $p=0.17529297$; 7/11 positive. This reproduces the earlier aggregate. It averages arithmetic, comma, and four neutral-language formats and is not arithmetic-specific.
+- **Arithmetic-only summary:** Mean +0.2679560; exact one-sided sign-flip $p=0.18652344$; 6/11 positive. Neither one-sided test reaches 0.05. The exported set has one unequal split in both orders and no bootstrap interval; these are limits on interpretation.
+- **Repository record:** `data/current/eleven_target_target_summary.csv` retains the target-level contrasts; `data/current/eleven_target_recomputed_summary.json` retains template-wise exact tests; `data/current/eleven_target_summary.csv` is the compact verified record. The raw export was not merged with the separate 20-target data.
+
+## A36. Versioned exploratory-result key clarification
+- **Legacy record retained:** `data/current/roundness_exploratory/exploratory_decomposition_results_v3.json` remains unchanged and retains its original key `primary_preregistered_HC3`, despite the surrounding result being explicitly labeled post hoc and outside preregistration.
+- **Versioned consumer export:** `exploratory_decomposition_results_v4.json` renames that key to `exploratory_HC3`. Its `schema_migration` metadata identifies the source and destination keys, states that the migration is key-only, and records that statistical values were preserved without recalculation.
+- **Interpretation:** The field rename clarifies the status of the estimate; it does not change its inferential result or make the exploratory analysis preregistered. The v3 producer remains the historical source for the v3 schema.
 
 ## Summary of research-relevant corrections
 | Issue | Changed conclusion? |
@@ -229,5 +236,6 @@ The earlier summary below is historical only. Its per-query response files were 
 | A25 (M1) | Closed as a scoped limitation; cohort definitions separated |
 | A26, A30, A32–A33 (frequency) | Earlier ρ = +0.82 discarded; the 79-request raw log is archived; post hoc seven-target correlations are reported as exploratory |
 | A34 (552-target class decomposition) | Adds end-5, end-0, and non-round class means, arm decomposition, and cluster-by-band sensitivity; records structural aliasing and archived inputs |
-| A35 (11-target held-out summary) | Records the supplied target list and aggregate; per-target scores are unavailable for independent recomputation |
+| A35 (11-target score set) | Adds saved logits and independently recomputed template-specific and aggregate summaries; both six-format and arithmetic-only tests are nonsignificant |
+| A36 (exploratory result key clarification) | Adds a schema-only v4 export with `exploratory_HC3`; v3 and its legacy key remain unchanged |
 | A04, A07–A10, A12–A13, A20, A29 | No change to the surviving claim; data-integrity limits retained |

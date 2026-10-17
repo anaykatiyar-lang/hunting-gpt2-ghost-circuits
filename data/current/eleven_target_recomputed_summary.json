@@ -1,0 +1,59 @@
+{
+  "n_targets": 11,
+  "targets": [
+    42,
+    44,
+    52,
+    62,
+    64,
+    66,
+    76,
+    82,
+    88,
+    92,
+    96
+  ],
+  "templates": [
+    "arithmetic",
+    "matched_comma",
+    "neutral_0",
+    "neutral_1",
+    "neutral_2",
+    "neutral_3"
+  ],
+  "arithmetic": {
+    "mean_contrast": 0.26795595342462714,
+    "positive_targets": 6,
+    "exact_one_sided_sign_flip_p": 0.1865234375
+  },
+  "matched_comma": {
+    "mean_contrast": 0.7062263488769531,
+    "positive_targets": 8,
+    "exact_one_sided_sign_flip_p": 0.05029296875
+  },
+  "neutral_0": {
+    "mean_contrast": 0.15969623218883167,
+    "positive_targets": 8,
+    "exact_one_sided_sign_flip_p": 0.20458984375
+  },
+  "neutral_1": {
+    "mean_contrast": 0.21159796281294388,
+    "positive_targets": 4,
+    "exact_one_sided_sign_flip_p": 0.2470703125
+  },
+  "neutral_2": {
+    "mean_contrast": 0.19878179376775568,
+    "positive_targets": 6,
+    "exact_one_sided_sign_flip_p": 0.1337890625
+  },
+  "neutral_3": {
+    "mean_contrast": 0.14979691938920456,
+    "positive_targets": 3,
+    "exact_one_sided_sign_flip_p": 0.25
+  },
+  "all_templates_mean": {
+    "mean_contrast": 0.28234253507671936,
+    "positive_targets": 7,
+    "exact_one_sided_sign_flip_p": 0.17529296875
+  }
+}
