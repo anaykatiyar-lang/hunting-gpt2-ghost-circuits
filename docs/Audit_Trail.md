@@ -209,6 +209,11 @@ The earlier summary below is historical only. Its per-query response files were 
 - **Registration-label and inference gap:** The result JSON's top-level status marks the decomposition post hoc and outside preregistration, while one key retains the legacy name `primary_preregistered_HC3`. No separate registration record or alternate inferential output is archived. The current reproduction script specifies a standard-normal reference (`use_t=False`) for both robust-covariance procedures. The original statsmodels version and inference setting used to produce the saved p-values were not recorded, so their exact software-level provenance remains unresolved.
 - **Repository effect:** The new results are incorporated into the manuscript and research flow as an exploratory extension in the same study narrative. No existing experimental values were replaced. The target-contrast, prompt-score, and split-manifest input CSVs are archived with the analysis. The result remains exploratory and is not presented as preregistered.
 
+## A35. Separate 11-target held-out summary
+- **Reported targets:** 42, 44, 52, 62, 64, 66, 76, 82, 88, 92, and 96.
+- **Reported aggregate:** Mean equal-minus-unequal margin +0.28234; exact one-sided sign-flip $p=0.175293$; 7/11 positive contrasts.
+- **Provenance limit:** The notebook-reported aggregate and target list are archived in `data/current/eleven_target_summary.csv`. Per-target score rows were not supplied, so the aggregate has not been independently recomputed.
+
 ## Summary of research-relevant corrections
 | Issue | Changed conclusion? |
 |---|---|
@@ -224,4 +229,5 @@ The earlier summary below is historical only. Its per-query response files were 
 | A25 (M1) | Closed as a scoped limitation; cohort definitions separated |
 | A26, A30, A32–A33 (frequency) | Earlier ρ = +0.82 discarded; the 79-request raw log is archived; post hoc seven-target correlations are reported as exploratory |
 | A34 (552-target class decomposition) | Adds end-5, end-0, and non-round class means, arm decomposition, and cluster-by-band sensitivity; records structural aliasing and archived inputs |
+| A35 (11-target held-out summary) | Records the supplied target list and aggregate; per-target scores are unavailable for independent recomputation |
 | A04, A07–A10, A12–A13, A20, A29 | No change to the surviving claim; data-integrity limits retained |

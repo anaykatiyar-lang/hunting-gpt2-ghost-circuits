@@ -1,0 +1,2 @@
+cohort,target_sums,n_targets,mean_equal_minus_unequal,exact_one_sided_sign_flip_p,positive_contrasts,source,verification
+held_out,42;44;52;62;64;66;76;82;88;92;96,11,0.28234,0.175293,7,notebook-reported aggregate,not independently recomputed; per-target scores not archived

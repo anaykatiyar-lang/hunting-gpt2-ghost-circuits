@@ -87,6 +87,8 @@ The cited mechanistic studies use different tasks and, in several cases, differe
 
 The archived results include the 39-row digit+digit score file, target-level format and operator tables, intervention results, the 20-target prompt-level logits, and individual corpus API responses. Format/operator exports remain target-level summaries rather than all underlying prompt scores. The single-operand comparison remains untested. The M1 cohorts are distinct: all-pairs zero-shot is 2/36 (5.56%); held-out zero-shot is 2/32 (6.25%) with an 8/32 (25%) best-constant baseline; held-out few-shot is 2/32; the earlier few-shot 5/33 uses another prefix and exclusion set. See [Audit_Trail.md](Audit_Trail.md) for the detailed correction record.
 
+A separate 11-target held-out summary reports mean equal-minus-unequal margin +0.28234, exact one-sided sign-flip $p=0.175293$, and 7/11 positive contrasts. The target list and aggregate are recorded in `data/current/eleven_target_summary.csv`; per-target scores were not supplied, so this summary has not been independently recomputed.
+
 ## 7. Unresolved Reproduction and Design Checks
 
 - Operator comparisons now have seven matched target-level means per condition and paired target-level inference; prompt-level operator scores are not archived.

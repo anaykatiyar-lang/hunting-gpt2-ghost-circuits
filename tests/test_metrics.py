@@ -36,7 +36,7 @@ class MetricTests(unittest.TestCase):
     def test_own_answer_contrast_and_missing_class(self):
         logits = np.array([[2.0, 0.0], [0.0, 2.0], [1.0, 0.0], [0.0, 1.0]])
         labels = np.array([0, 1, 1, 0])
-        self.assertAlmostEqual(own_answer_contrast(logits, labels, [0, 1]), 1.5)
+        self.assertAlmostEqual(own_answer_contrast(logits, labels, [0, 1]), 0.5)
 
         with self.assertRaisesRegex(ValueError, "No prompts have answer label 1"):
             own_answer_contrast(np.array([[1.0, 0.0], [2.0, 0.0]]), np.array([0, 0]), [0, 1])
