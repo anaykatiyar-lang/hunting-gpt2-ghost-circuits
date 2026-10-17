@@ -39,7 +39,7 @@ class MetricTests(unittest.TestCase):
         self.assertAlmostEqual(own_answer_contrast(logits, labels, [0, 1]), 0.5)
 
         with self.assertRaisesRegex(ValueError, "No prompts have answer label 1"):
-            own_answer_contrast(np.array([[1.0, 0.0], [2.0, 0.0]]), np.array([0, 0]), [0, 1])
+            own_answer_contrast(np.array([[1.0, 0.0], [2.0, 0.0]]), np.array([0, 2]), [0, 1])
 
     def test_own_answer_contrast_rejects_nonfinite_logits(self):
         with self.assertRaisesRegex(ValueError, "finite"):
