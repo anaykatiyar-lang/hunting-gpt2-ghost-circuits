@@ -20,14 +20,14 @@
 \maketitle
 
 \begin{abstract}
-I examine short decimal-addition prompts in GPT-2 Small (124M parameters) using behavioral tests, attribution, interventions, and prompt comparisons. On a held-out zero-shot set, the model answers 2/32 prompts correctly; its best constant guess answers 8/32. In a 79-cell prompt grid, target parity matches the sign of the logit contrast in 68/79 cells, with agreement varying by target range. Across seven even sums, the mean equal-operand advantage is $+0.2474$ (two-sided exact sign-flip $p=0.03125$; target-level SE $=0.102$), while sign and control-exclusion checks give $p=0.125$. A 20-target extension has a positive mean contrast ($+0.39392$), but only 8/20 target contrasts are positive, below its 70\% breadth criterion. In a separate 11-target set, the mean contrast averaged across six prompt formats is $+0.28234$ (exact one-sided sign-flip $p=0.17529$; 7/11 positive); the arithmetic-only contrast is $+0.26796$ ($p=0.18652$; 6/11 positive). An exploratory decomposition of 552 target-level contrasts finds a larger equal-minus-unequal score for targets whose equal operands end in 5 than for non-round targets (difference $+0.293$ nats per answer token; magnitude-band-clustered 95\% interval $[+0.172,+0.414]$). Target class is structurally tied to operand endings in this design, and the unequal-control compositions also differ. The result therefore identifies a class-dependent score pattern, not an isolated roundness effect or an addition circuit.
+I examine short decimal-addition prompts in GPT-2 Small (124M parameters) using behavioral tests, attribution, interventions, and prompt comparisons. On a held-out zero-shot set, the model answers 2/32 prompts correctly; its best constant guess answers 8/32. In a 79-cell prompt grid, target parity matches the sign of the logit contrast in 68/79 cells, with agreement varying by target range. Across seven even sums, the mean equal-operand advantage is $+0.2474$ (two-sided exact sign-flip $p=0.03125$; target-level SE $=0.102$), while sign and control-exclusion checks give $p=0.125$. A 20-target extension has a positive mean contrast ($+0.39392$), but only 8/20 target contrasts are positive, below its 70\% breadth criterion; this extension also used a different selection seed and bin boundaries, one arithmetic template, and one unequal split rather than the planned three templates and up to six splits. In a separate 11-target set, the mean contrast averaged across six prompt formats is $+0.28234$ (exact one-sided sign-flip $p=0.17529$; 7/11 positive); the arithmetic-only contrast is $+0.26796$ ($p=0.18652$; 6/11 positive). An exploratory decomposition of 552 target-level contrasts finds a larger equal-minus-unequal score for targets whose equal operands end in 5 than for non-round targets (difference $+0.293$ nats per answer token; magnitude-band-clustered 95\% interval $[+0.172,+0.414]$). Target class is structurally tied to operand endings in this design, and the unequal-control compositions also differ. The result therefore identifies a class-dependent score pattern, not an isolated roundness effect or an addition circuit.
 \end{abstract}
 
 \section{Introduction}
 
 Mechanistic interpretability asks how a model's internal representations and computations produce its behavior. It aims to explain more than input-output correlations alone \cite{elhage2021framework}. GPT-2 is an autoregressive language model trained to predict the next token \cite{radford2019gpt2}. Arithmetic offers a clear test case because the intended operation is explicit. But a model's preference for the correct answer token does not, by itself, show that the model performed the operation.
 
-Hanna et al. provide the closest comparison by model: they study greater-than prediction in pretrained GPT-2 Small \cite{hanna2023greater}. They identify and test a circuit for comparing year-like values, not for decimal addition. Other studies examine arithmetic mechanisms directly in pretrained language models. Stolfo et al. use causal mediation to trace arithmetic-related information flow in models with 2.8B--7B parameters \cite{stolfo2023causal}. Yu and Ananiadou analyze addition and other operations in Llama-7B and GPT-J, including attention heads and feed-forward neurons \cite{yu2024cna}. Nikankin et al. characterize arithmetic circuits and heuristic neurons in pretrained Llama 3, Pythia, and GPT-J models \cite{nikankin2025heuristics}. This prior work shows that researchers have already studied arithmetic mechanisms in pretrained models. Its models, scales, prompts, and analyses differ from my short decimal-completion probes in GPT-2 Small. Those circuit findings therefore neither validate nor rule out my interpretations. Nanda et al. and Zhong et al. offer another comparison: they study transformers trained on modular addition, where researchers can examine learned algorithms in controlled settings \cite{nanda2023progress,zhong2023clock}. Ye et al. study models trained on synthetic grade-school math, a distinct setting \cite{ye2024physics}.
+Hanna et al. provide the closest comparison by model: they study greater-than prediction in pretrained GPT-2 Small \cite{hanna2023greater}. They identify and test a circuit for comparing year-like values, not for decimal addition. Zhou et al. provide a closer comparison by task: they study addition in fine-tuned GPT-2-XL and prompted GPT-J and Phi-2, and report Fourier structure that includes periods 2, 5, and 10 \cite{zhou2024fourier}. Kantamneni and Tegmark offer a related helix account of addition in a separate preprint \cite{kantamneni2025trigonometry}. These studies differ from my low-accuracy GPT-2 Small completion probes and do not establish what produces the contrasts measured here. Other work examines arithmetic mechanisms directly in pretrained language models. Stolfo et al. use causal mediation to trace arithmetic-related information flow in models with 2.8B--7B parameters \cite{stolfo2023causal}. Yu and Ananiadou analyze addition and other operations in Llama-7B and GPT-J, including attention heads and feed-forward neurons \cite{yu2024cna}. Nikankin et al. characterize arithmetic circuits and heuristic neurons in pretrained Llama 3, Pythia, and GPT-J models \cite{nikankin2025heuristics}. Nanda et al. and Zhong et al. study transformers trained on modular addition, where researchers can examine learned algorithms in controlled settings \cite{nanda2023progress,zhong2023clock}. Ye et al. study models trained on synthetic grade-school math, a distinct setting \cite{ye2024physics}.
 
 I test GPT-2 Small with prompts such as \texttt{3 + 5 =}. I began with the hypothesis that addition might rely on a general, addition-specific circuit. Behavioral baselines, corrected attributions, and intervention controls narrowed that interpretation. The seven-target scan still showed a target-dependent preference for equal-operand prompts. I describe this as a behavioral effect and a candidate for future causal testing.
 
@@ -35,9 +35,9 @@ My contribution is narrower than a new account of arithmetic mechanisms. I docum
 
 \section{Study scope and related work}
 
-\paragraph{Pretrained mathematical behavior in GPT-2 Small.} Hanna et al. study greater-than prediction in pretrained GPT-2 Small and validate a circuit across related contexts \cite{hanna2023greater}. Their work is my closest precedent by model family, but not by arithmetic operation. I study decimal-addition prompts and do not provide comparable circuit validation or evidence of generalization.
+\paragraph{Pretrained mathematical behavior in GPT-2 Small.} Hanna et al. study greater-than prediction in pretrained GPT-2 Small and validate a circuit across related contexts \cite{hanna2023greater}. Their work is my closest precedent by model family, but not by arithmetic operation. Zhou et al. study addition mechanisms in GPT-2-XL, GPT-J, and Phi-2, making their work the closer task comparison \cite{zhou2024fourier}. I study short decimal-addition prompts in GPT-2 Small and do not provide comparable circuit validation or evidence of generalization.
 
-\paragraph{Mechanistic studies of pretrained arithmetic.} Researchers have directly investigated arithmetic computations in pretrained models. Stolfo et al. use causal mediation on arithmetic questions. They report information transfer from operands and operators toward the answer position, followed by result-related processing in MLP modules \cite{stolfo2023causal}. Yu and Ananiadou study arithmetic heads and feed-forward neurons in Llama-7B, with related analyses in GPT-J \cite{yu2024cna}. Nikankin et al. analyze arithmetic circuits in pretrained Llama 3, Pythia, and GPT-J models. They also characterize groups of heuristic neurons that contribute to answer logits \cite{nikankin2025heuristics}. These studies directly inform mechanistic arithmetic analysis and the broader question of algorithmic computation versus narrower patterns. I do not replicate those studies. I use GPT-2 Small, short next-token decimal prompts, a low-accuracy behavioral setting, and an equal-operand contrast. My narrower contribution is to document that contrast and the limits of the evidence available to interpret it. Differences in models and methods mean that neither set of findings confirms the other.
+\paragraph{Mechanistic studies of pretrained arithmetic.} Zhou et al. identify Fourier features in addition-related representations and computations, including periodic structure relevant to parity and decimal patterns \cite{zhou2024fourier}. Kantamneni and Tegmark describe a helix representation and a proposed addition procedure in other mid-sized language models \cite{kantamneni2025trigonometry}. Stolfo et al. use causal mediation on arithmetic questions. They report information transfer from operands and operators toward the answer position, followed by result-related processing in MLP modules \cite{stolfo2023causal}. Yu and Ananiadou study arithmetic heads and feed-forward neurons in Llama-7B, with related analyses in GPT-J \cite{yu2024cna}. Nikankin et al. analyze arithmetic circuits in pretrained Llama 3, Pythia, and GPT-J models. They also characterize groups of heuristic neurons that contribute to answer logits \cite{nikankin2025heuristics}. These studies inform mechanistic arithmetic analysis, but they do not directly test the prompt-level contrast studied here. I use GPT-2 Small, short next-token decimal prompts, and an equal-operand contrast; I do not replicate their circuit analyses.
 
 \paragraph{Arithmetic in trained models and other tasks.} Nanda et al. study small transformers trained on modular addition. They use activation, weight, and intervention analyses to validate a learned Fourier algorithm \cite{nanda2023progress}. Zhong et al. show that architecture and training conditions shape the solutions that models learn for modular addition \cite{zhong2023clock}. Lee et al. examine how training data and formats affect arithmetic learning in small transformers \cite{lee2024teaching}. Ye et al. analyze internal processes in synthetic grade-school math settings, including GPT-2-family models trained on generated data \cite{ye2024physics}. These studies offer useful comparisons, but their training regimes or tasks differ from my pretrained short-completion setting.
 
@@ -51,11 +51,11 @@ I study GPT-2 Small (124M parameters) using short arithmetic prompts, mainly \te
 
 I report three behavioral cohorts separately: all-pairs zero-shot ($N=36$), held-out zero-shot ($N=32$), and held-out few-shot ($N=32$). I do not pool them. “Held-out” follows the cohort definition used here: it excludes the four ordered operand pairs used as few-shot examples and their order-reversed counterpart, $(1,1)$, $(2,2)$, $(5,3)$, and $(3,5)$. The few-shot prefix contains three demonstrations, each on its own line: \texttt{1 + 1 = 2}, \texttt{2 + 2 = 4}, and \texttt{5 + 3 = 8}. The all-pairs cohort contains every ordered single-digit pair with a one-digit sum. Under the exclusions above, each held-out cohort contains the remaining 32 pairs. The dense equal-operand scan covers seven even target sums, $T\in\{4,6,8,10,12,14,16\}$. For each target, I compare one double prompt, $(T/2)+(T/2)$, with the available ordered unequal single-digit splits that sum to $T$. The exploratory two-digit transfer analysis covers targets 24, 26, 28, 30, 32, 34, and 36. For each target, it compares one double prompt with ordered unequal splits whose operands range from 10 to 19. I froze the three-component candidate set before this transfer analysis. Because earlier analyses selected these components, the transfer analysis is not an independent confirmation.
 
-I extend the target scan to 20 even sums from 38 to 98: 38, 40, 46, 48, 50, 54, 56, 58, 60, 68, 70, 72, 74, 78, 80, 84, 86, 90, 94, and 98. I use leading-space target and numeric-neighbor tokens and the neighbor-averaged score in Eq.~\ref{eq:score}. Each target has one arithmetic prompt template and one unequal split, evaluated in both operand orders. The saved records also include one comma template and four alternate natural-language templates; I treat those formats as exploratory. The selection used seed 42 and ranges 38--56, 58--76, and 78--98, rather than the written plan's seed 2026101201 and ranges 38--58, 60--78, and 80--98. Under the plan's ranges, the selected targets fall into bins of 8/6/6, rather than 7/6/7. The analysis also includes fewer arithmetic templates and unequal splits than planned. I report it as a continuation of the same study while keeping these design differences visible.
+I extend the target scan to 20 even sums from 38 to 98: 38, 40, 46, 48, 50, 54, 56, 58, 60, 68, 70, 72, 74, 78, 80, 84, 86, 90, 94, and 98. I use leading-space target and numeric-neighbor tokens and the neighbor-averaged score in Eq.~\ref{eq:score}. Each target has one arithmetic prompt template and one unequal split, evaluated in both operand orders. The saved records also include one comma template and four alternate natural-language templates; I treat those formats as exploratory. The selection used seed 42 and ranges 38--56, 58--76, and 78--98, rather than the written plan's seed 2026101201 and ranges 38--58, 60--78, and 80--98. Under the plan's ranges, the selected targets fall into bins of 8/6/6, rather than 7/6/7. The records do not establish whether target selection was blind to scores or round-number status. The analysis also includes fewer arithmetic templates and unequal splits than planned. I report it as a continuation of the same study while keeping these design differences visible.
 
 A separate score export covers targets 42, 44, 52, 62, 64, 66, 76, 82, 88, 92, and 96. It records an arithmetic template, a comma template, and four neutral-language templates for equal operands and two ordered unequal controls. For each target and template, I calculate the equal-prompt score minus the mean score of the two unequal orders, then average across the six templates. I also report the arithmetic-template contrast separately. I enumerate all $2^{11}$ target-level sign assignments for the one-sided sign-flip tests. This set is reported separately from the 20-target analysis; its six-format average is not an arithmetic-only estimate.
 
-For the later 552-target decomposition, I analyze the saved target-level equal-minus-unequal contrast by magnitude band and target/equal-operand decimal class. The archived analysis output reports 3,864 prompt-score records, with one equal and six unequal scores per target. The compared classes are targets whose equal operand ends in 5 and non-round targets; the end-0 class is described separately. These scores are mean conditional log-probabilities per answer token, in nats per token. The included code reports HC3 and cluster-by-magnitude-band inference (43 bands). The target-contrast, prompt-score, and split-manifest CSV files needed to rerun the analysis are archived with the derived outputs. The analysis output labels the decomposition post hoc and outside the preregistered analysis; no separate registration record for the comparison is archived.
+For the later 552-target decomposition, I analyze the saved target-level equal-minus-unequal contrast by magnitude band and target/equal-operand decimal class. The archived analysis output reports 3,864 prompt-score records, with one equal and six unequal scores per target. The compared classes are targets whose equal operand ends in 5 and non-round targets; the end-0 class is described separately. These scores are mean conditional log-probabilities per answer token, in nats per token; I denote this separate score by $S_{\mathrm{lp}}$. For single-token answers, the logit contrast in Eq.~\ref{eq:score} equals the corresponding log-probability contrast because the shared log-normalizer cancels. This equivalence does not hold for the multi-token answer sequences in the 552-target analysis. The included code reports HC3 and cluster-by-magnitude-band inference (43 bands). The saved HC3 interval's original reference distribution and statsmodels version were not recorded; the current reproduction script uses standard-normal references. The target-contrast, prompt-score, and split-manifest CSV files needed to rerun the analysis are archived with the derived outputs. The analysis output labels the decomposition post hoc and outside the preregistered analysis; no separate registration record for the comparison is archived.
 
 
 
@@ -63,14 +63,14 @@ For the later 552-target decomposition, I analyze the saved target-level equal-m
 
 I measure behavioral performance by full-vocabulary top-1 accuracy and compare it with a cohort-specific constant baseline. For prompt $p$ and target token $T$, the neighbor-averaged logit contrast is
 \begin{equation}
-S(p,T)=\ell_T(p)-\frac{\ell_{T-1}(p)+\ell_{T+1}(p)}{2},
+S_{\mathrm{logit}}(p,T)=\ell_T(p)-\frac{\ell_{T-1}(p)+\ell_{T+1}(p)}{2},
 \label{eq:score}
 \end{equation}
 where $\ell_j(p)$ is the next-token logit for the leading-space answer token corresponding to $j$. This score measures relative logit preference among the target and its two neighboring values; it is not a measure of exact-answer probability or proof of arithmetic computation.
 
 For each even target $T$, the equal-operand advantage is
 \begin{equation}
-A_T=S(p_{d,d},T)-\frac{1}{|C_T|}\sum_{(a,b)\in C_T}S(p_{a,b},T),\qquad d=T/2,
+A_T=S_{\mathrm{logit}}(p_{d,d},T)-\frac{1}{|C_T|}\sum_{(a,b)\in C_T}S_{\mathrm{logit}}(p_{a,b},T),\qquad d=T/2,
 \label{eq:adv}
 \end{equation}
 Here, $p_{a,b}$ is the prompt \texttt{a + b =}, and $C_T$ contains the evaluated ordered unequal splits whose operands sum to $T$. I summarize the seven target-level advantages with their mean and standard error; the target is the inferential unit ($n=7$). I use a two-sided exact sign-flip test over all $2^7$ sign assignments and a 10,000-resample percentile bootstrap over targets (seed 20261008). With only seven target clusters, the bootstrap interval is necessarily coarse.
@@ -95,6 +95,25 @@ I use Infini-gram counts from the Dolma v1.7 index \texttt{v4\_dolma-v1\_7\_llam
 
 \section{Results}
 
+The analyses use different target sets, designs, and score definitions. Table~\ref{tab:analysis-summary} identifies each analysis's status and measurement; estimates in logit units and nats per answer token are not directly comparable.
+
+\begin{table}[t]
+\centering
+\caption{Overview of the target sets, score units, and evidence status of the main analyses.}
+\label{tab:analysis-summary}
+\small
+\begin{tabular}{p{0.20\linewidth}p{0.24\linewidth}p{0.17\linewidth}p{0.28\linewidth}}
+\toprule
+Analysis and target set & Score & Status & Main result \\
+\midrule
+Seven-target scan ($T=4$--$16$) & Neighbor-averaged logit contrast & Exploratory scan & Mean $A_T=+0.2474$; two-sided sign-flip $p=0.03125$; 6/7 positive. \\
+Twenty-target extension ($T=38$--$98$) & Neighbor-averaged logit contrast & Protocol deviations; breadth criterion failed & Mean $+0.39392$; one-sided sign-flip $p=0.013618$; 8/20 positive (40\%). \\
+Separate 11-target set ($T=42$--$96$) & Arithmetic-template logit contrast & Separate secondary set; disjoint from 20-target sample & Mean $+0.26796$; one-sided sign-flip $p=0.18652$; 6/11 positive. Six-format mean: $+0.28234$ ($p=0.17529$; 7/11 positive). \\
+552-target decomposition & Mean conditional log-probability per answer token & Exploratory, post hoc & End-5 versus non-round class difference $+0.2930$ nats per answer token; cluster-by-band 95\% CI $[+0.1724,+0.4137]$. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{The tested cohorts do not show reliable exact-answer performance}
 
 The model achieves full-vocabulary top-1 accuracy of 2/36 (5.56\%) on the all-pairs zero-shot cohort and 2/32 (6.25\%) on the held-out zero-shot cohort. The best constant guess scores 8/36 (22.2\%) and 8/32 (25\%), respectively. Held-out few-shot full-vocabulary accuracy is also 2/32. Restricting prediction to the seven answer digits in the held-out cohort raises top-1 accuracy to 4/32 (12.5\%) in zero-shot and 10/32 (31.25\%) in few-shot. A constant digit guess scores 8/32 (25\%) in either setting. The recorded one-sided comparison does not find a significant few-shot difference under this restricted-vocabulary metric ($p\approx0.26$).
@@ -103,7 +122,7 @@ A separate label-permutation analysis reports a row-centred own-answer logit con
 
 \subsection{Parity agreement varies across the addition grid}
 
-In the committed 79-cell grid, target parity predicts the measured logit-contrast sign in 68/79 cells. Agreement is 63/64 for sums $\leq 13$ and 5/15 for higher-sum rows (sums $\geq 14$). Cells share target sums and differ in prompt composition, so these fractions are descriptive; they are not estimates from independent trials. The pattern also varies across the tested range. I ran a separate sensitivity analysis with parity-matched foils, $T-2$ and $T+2$:
+In the committed 79-cell grid (Fig.~\ref{fig:addition-grid}), target parity predicts the measured logit-contrast sign in 68/79 cells. Agreement is 63/64 for sums $\leq 13$ and 5/15 for higher-sum rows (sums $\geq 14$). Cells share target sums and differ in prompt composition, so these fractions are descriptive; they are not estimates from independent trials. Zhou et al. report periodic structure, including periods 2, 5, and 10, in addition-related representations and computations \cite{zhou2024fourier}. The present grid does not test Fourier features or establish that its parity pattern arises from the same representation. The pattern also varies across the tested range. I ran a separate sensitivity analysis with parity-matched foils, $T-2$ and $T+2$:
 
 \begin{center}
 \small
@@ -126,8 +145,8 @@ The mean is $+0.1865$. The two-sided exact sign-flip test gives $p=0.140625$. Th
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.88\linewidth]{addition_grid_heatmap.pdf}
-\caption{Addition-grid symmetric logit differences across the 79 prompt pairs. The grid shows target-dependent structure; cells sharing a target are not independent observations. Rendered from the canonical grid data.}
+\includegraphics[width=0.88\linewidth]{addition_grid_heatmap.png}
+\caption{Addition-grid symmetric logit differences across the 79 prompt pairs. The grid shows target-dependent structure; cells sharing a target are not independent observations.}
 \label{fig:addition-grid}
 \end{figure}
 
@@ -139,7 +158,7 @@ Zero ablation changed the residual-stream scale in the reported prompt. Across r
 
 \subsection{A target-dependent equal-operand pattern remains}
 
-The 39-row digit--digit scan reports the following target-level summaries:
+The 39-row digit--digit scan reports the following target-level summaries (Table~\ref{tab:doubles-targets}):
 
 \begin{table}[t]
 \centering
@@ -165,7 +184,7 @@ Across seven target levels, the mean advantage is $+0.2474$, and six target-leve
 
 Across the seven target levels, the paired digit+digit versus digit+word difference is $-0.2190$ (raw $p=0.015625$; Holm-adjusted $p=0.046875$ within the three-comparison format family). This adjusted value is just below 0.05, and I did not adjust it across the wider set of project analyses. The other two format comparisons have Holm-adjusted $p=0.21875$. A separate four-target notebook summary reports pooled control SDs of $0.080$, $0.171$, and $0.273$ for digit+digit, digit+word, and word+word, respectively. It reports descriptive advantage/SD ratios of $5.22$, $4.40$, and $4.93$. Both raw advantages and control spread increase with word-form use. These ratios therefore do not establish a format effect, and they are not significance tests.
 
-I have seven target-level means for each of five operator and connector strings. At target 8, the advantages for \texttt{and} ($+0.321$) and \texttt{then} ($+0.344$) are at least as large as the plus advantage ($+0.291$). This exploratory pattern is consistent with an effect that is not addition-specific. However, all four plus-versus-other paired tests have Holm-adjusted $p=0.6875$. I detect no difference at this sample size, but that does not establish equivalence. The task also lacks semantic matching: I score the same arithmetic sum token under addition, subtraction, multiplication, and connectives. These comparisons therefore do not show that the model performs arithmetic under those strings. The prompt-level operator scores are not included.
+I have seven target-level means for each of five operator and connector strings. At target 8, the advantages for \texttt{and} ($+0.321$) and \texttt{then} ($+0.344$) are at least as large as the plus advantage ($+0.291$). This exploratory pattern is consistent with an effect that is not addition-specific. However, all four plus-versus-other paired tests have Holm-adjusted $p=0.6875$. I detect no difference at this sample size, but that does not establish equivalence. The task also lacks semantic matching: I score the same arithmetic sum token under addition, subtraction, multiplication, and connectives. These comparisons therefore do not show that the model performs arithmetic under those strings. The prompt-level operator scores are not included. Figure~\ref{fig:operator-legacy} shows a separate legacy aggregate; its advantage/SD ratios are descriptive and cannot be recomputed from archived prompt-level scores. Its ASCII operator labels reflect the reported source summary and differ from the Unicode operators used in the target-level records.
 
 \begin{figure}[t]
 \centering
@@ -174,11 +193,18 @@ I have seven target-level means for each of five operator and connector strings.
 \label{fig:operator-summary}
 \end{figure}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.96\linewidth]{operator_swap_heatmap.png}
+\caption{Legacy reported advantage/SD ratios and raw advantages under operator substitutions. The ratios are descriptive, not significance tests; the source summary is not reproducible from archived prompt-level scores. ASCII symbols match the legacy summary.}
+\label{fig:operator-legacy}
+\end{figure}
+
 \subsection{Twenty-target extension: positive mean but limited breadth}
 
 For this 20-target analysis, I use spacing-aware target and numeric-neighbor tokens. The per-target margins match the corresponding target and neighbor logits. The mean target-level arithmetic contrast is $+0.39392$. Under the written plan's original ranges, the sample allocation is 8/6/6. The 95\% bootstrap interval is $[+0.09556,+0.71692]$, and the exact one-sided sign-flip test gives $p=0.013618$ (two-sided $p=0.027235$). The mean exceeds the $0.10$ threshold, and the interval and test criteria pass. Only 8/20 targets ($40\%$) have positive contrasts, below the 70\% threshold (14/20). Thus, three numerical criteria pass and the breadth criterion fails. The selection and prompt/control design differ from the written plan, so this analysis does not satisfy every planned condition.
 
-In a post hoc analysis, the arithmetic contrast is concentrated in six selected targets divisible by ten (40, 50, 60, 70, 80, and 90). Their mean is $+1.4313$, and all six are positive. The other 14 targets have a mean of $-0.0507$, with two positive values; the overall median is $-0.0606$. This contrast largely tracks the equal-prompt scores. Their mean is $+1.7410$ for round targets and $+0.0022$ for other targets. The corresponding unequal-control means are $+0.3097$ and $+0.0529$. A fixed-size, two-sided permutation of the six round labels gives an unadjusted $p=1/38{,}760\approx2.6\times10^{-5}$ for the arithmetic-contrast gap. I identified this subgroup after inspecting the results, and I did not adjust for searching across possible subgroup definitions. I therefore treat it as exploratory, not confirmatory. The same descriptive round/non-round split appears in the comma and four alternate natural-language formats. These measurements come from the same targets and are correlated, so they are not independent replications. Across targets, the arithmetic-minus-comma contrast averages $-0.134$ (correlation $r=0.878$). A nonsignificant comparison does not establish equivalence. These prompt formats also differ from those specified in the written plan.
+In a post hoc analysis, the arithmetic contrast is concentrated in six selected targets divisible by ten (40, 50, 60, 70, 80, and 90). Their mean is $+1.4313$, and all six are positive. The other 14 targets have a mean of $-0.0507$, with two positive values; the overall median is $-0.0606$. This contrast largely tracks the equal-prompt scores. Their mean is $+1.7410$ for round targets and $+0.0022$ for other targets. The corresponding unequal-control means are $+0.3097$ and $+0.0529$. A fixed-size, two-sided permutation of the six round labels gives an unadjusted $p=1/38{,}760\approx2.6\times10^{-5}$ for the arithmetic-contrast gap; one of the 38,760 assignments is at least as extreme in absolute value. I identified this subgroup after inspecting the results, and I did not adjust for searching across possible subgroup definitions. I therefore treat it as exploratory, not confirmatory. The same descriptive round/non-round split appears in the comma and four alternate natural-language formats. These measurements come from the same targets and are correlated, so they are not independent replications. Across targets, the arithmetic-minus-comma contrast averages $-0.134$ (correlation $r=0.878$). A nonsignificant comparison does not establish equivalence. These prompt formats also differ from those specified in the written plan.
 
 My notebook also reports a summary for the 11 remaining targets: a pooled-across-formats mean of $+0.282$, one-sided sign-flip $p=0.175$, and 7/11 positive values. None of these targets is a multiple of ten. This analysis pools six formats instead of isolating the arithmetic condition. The repository also lacks its prompt-level output file. I therefore treat it neither as an independent confirmation nor as a test of the round-target pattern.
 
@@ -186,7 +212,7 @@ My notebook also reports a summary for the 11 remaining targets: a pooled-across
 
 I next decomposed target-level equal-minus-unequal scores by the decimal structure of each target and its equal operand. The archived analysis output reports 552 target summaries and 3,864 prompt-level score records, with one equal-prompt score and six unequal-prompt scores per target. It reports maximum recomputation differences of $2.22\times10^{-16}$ for $A_T$ and $4.44\times10^{-16}$ for each arm. I verified that the three archived summary tables agree with the corresponding JSON summaries; the underlying target contrasts, prompt-level inputs, and split manifest are also archived. The decomposition is exploratory and does not change the earlier target-level measurements.
 
-The mean $A_T$ is $+0.0347$ for non-round targets ($n=276$), $+0.3277$ when the equal operand ends in 5 ($n=138$), and $+0.1806$ when it ends in 0 ($n=138$). Comparing the end-5 class with the non-round class, the magnitude-band-adjusted difference is $+0.2930$ nats per answer token (HC3 95\% CI $[+0.2289,+0.3572]$). A cluster-by-magnitude-band sensitivity analysis across 43 bands gives the same estimate, SE $=0.0598$, 95\% CI $[+0.1724,+0.4137]$, and two-sided $p=1.47\times10^{-5}$. This clustered estimate is the more conservative uncertainty summary; it remains a sensitivity analysis rather than a complete model of dependence between targets.
+The mean $A_T$ is $+0.0347$ for non-round targets ($n=276$), $+0.3277$ when the equal operand ends in 5 ($n=138$), and $+0.1806$ when it ends in 0 ($n=138$). Because $A_T$ compares prompts for the same target, the class difference reflects operand structure or an interaction between target class and operand structure. Comparing the end-5 class with the non-round class, the magnitude-band-adjusted difference is $+0.2930$ nats per answer token (HC3 95\% CI $[+0.2289,+0.3572]$). A cluster-by-magnitude-band sensitivity analysis across 43 bands gives the same estimate, SE $=0.0598$, 95\% CI $[+0.1724,+0.4137]$, and two-sided $p=1.47\times10^{-5}$. The archived output does not record the HC3 interval's reference distribution; the current reproduction script uses a standard-normal reference. The clustered estimate is a sensitivity analysis, not a complete model of dependence between targets.
 
 The class contrast cannot isolate target roundness from operand ending. For equal operands, $T=2a$: a target divisible by 10 but not 20 has an operand ending in 5, while a target divisible by 20 has an operand ending in 0. Non-round even targets cannot have equal operands ending in 0 or 5. The unequal arms also differ: both operands end in 0 or 5 in all end-0 controls, compared with about 10\% of end-5 controls and none of the non-round controls. Thus the larger end-5 contrast is associated with a joint target/operand/control class; it does not identify which feature drives the difference.
 
@@ -194,11 +220,11 @@ The decomposition also shows why raw equal-prompt scores alone would be misleadi
 
 \subsection{Separate 11-target score set}
 
-The uploaded score records cover 11 targets: 42, 44, 52, 62, 64, 66, 76, 82, 88, 92, and 96. Averaging the target-level equal-minus-unequal contrasts across the arithmetic, comma, and four neutral-language templates gives a mean of $+0.28234$, with 7/11 positive targets and an exact one-sided sign-flip $p=0.17529$. For the arithmetic template alone, the mean is $+0.26796$, with 6/11 positive targets and $p=0.18652$. These are distinct summaries: the six-format aggregate should not be read as the arithmetic-only estimate. Neither one-sided test reaches the conventional 0.05 threshold; this dataset does not supply positive evidence for a consistent target-level increase. The underlying logits, neighboring-token scores, per-target contrasts, and recalculation script are archived.
+The uploaded score records cover 11 targets: 42, 44, 52, 62, 64, 66, 76, 82, 88, 92, and 96. Averaging the target-level equal-minus-unequal contrasts across the arithmetic, comma, and four neutral-language templates gives a mean of $+0.28234$, with 7/11 positive targets and an exact one-sided sign-flip $p=0.17529$. For the arithmetic template alone, the mean is $+0.26796$, with 6/11 positive targets and $p=0.18652$. These are distinct summaries: the six-format aggregate should not be read as the arithmetic-only estimate. Neither one-sided test reaches the conventional 0.05 threshold; this dataset does not supply positive evidence for a consistent target-level increase. The pattern also differs across non-round target sets: the 20-target analysis has a mean of $-0.0507$ among its 14 non-round targets (2/14 positive), while this 11-target arithmetic-only estimate is $+0.26796$ (6/11 positive); the 552-target non-round class has mean $A_T=+0.0347$ nats per answer token. These analyses use different samples and, in the last case, a different score metric; I do not pool or explain away the discrepancy. The underlying logits, neighboring-token scores, per-target contrasts, and recalculation script are archived.
 
 \subsection{Candidate-component screens do not establish a circuit}
 
-My notebook screens 12 components, selected by the magnitude of their DLA contrasts across five discovery targets. Four components reach the smallest possible one-sided p-value, $0.03125$. I selected the three with the largest negative mean changes in advantage after ablation—\texttt{10\_mlp\_out}, L9H9, and L10H2—for subsequent exploratory tests. L8H11 is the fourth component at the p-value floor; I did not select it because its mean change ranked fourth. For the selected three, the one-sided BH-adjusted $q=0.09375$ and two-sided $q=0.15$. None passes $q<0.05$. With five target-level units and a 12-test family, this screen cannot confirm a component. Its failure to pass correction also does not count as evidence against one. Target-level completeness ratios range from $0.54$ to $1.54$ and become unstable when the full-model contrast is small.
+My notebook screens 12 components, selected by the magnitude of their DLA contrasts across five discovery targets. Four components reach the smallest possible one-sided p-value, $0.03125$. I selected the three with the largest negative mean changes in advantage after ablation—\texttt{10\_mlp\_out}, L9H9, and L10H2—for subsequent exploratory tests. L8H11 is the fourth component at the one-sided p-value floor; I did not select it because its mean change ranked fourth. Five components reach the two-sided floor $p=0.0625$, including one whose mean change is in the opposite direction. For the selected three, the one-sided BH-adjusted $q=0.09375$ and two-sided $q=0.15$. None passes $q<0.05$. With five target-level units and a 12-test family, this screen cannot confirm a component. Its failure to pass correction also does not count as evidence against one. Target-level completeness ratios range from $0.54$ to $1.54$ and become unstable when the full-model contrast is small.
 
 In the exploratory transfer analysis at two-digit targets, the clean and jointly ablated equal-operand advantages were:
 
@@ -223,7 +249,7 @@ The clean advantage is positive at five of seven targets (mean $+0.384$; two-sid
 
 \subsection{Corpus-frequency relationship remains unresolved}
 
-My corpus query log records 79 API attempts. All returned HTTP 200, and none has a logged error. The archived summary, which applies no count threshold, shows positive double-versus-control joint log ratios at all seven targets and mixed conditional log ratios. In a post hoc Spearman analysis across these targets, joint log ratio versus equal-operand advantage gives $\rho=+0.464$ ($p=0.294$); conditional log ratio versus advantage gives $\rho=-0.143$ ($p=0.760$). These small-sample tests detect no association. I did not prespecify them, and they do not rule out a frequency contribution. The counts also have an exact-string digit-boundary limitation: the API tokenizer records the first digit without a leading-space token marker, so a match may include a longer number ending in the queried digits. Dolma is a proxy, not GPT-2's training corpus.
+My corpus query log records 79 API attempts. All returned HTTP 200, and none has a logged error. I use Infini-gram counts from the Dolma v1.7 index as a proxy for textual co-occurrence; prior work has examined relations between pretraining frequency and numerical reasoning, while Infini-gram and Dolma describe the retrieval system and corpus used here \cite{razeghi2022frequency,liu2024infini,soldaini2024dolma}. The archived summary, which applies no count threshold, shows positive double-versus-control joint log ratios at all seven targets and mixed conditional log ratios. In a post hoc Spearman analysis across these targets, joint log ratio versus equal-operand advantage gives $\rho=+0.464$ ($p=0.294$); conditional log ratio versus advantage gives $\rho=-0.143$ ($p=0.760$). These small-sample tests detect no association. I did not prespecify them, and they do not rule out a frequency contribution. The counts also have an exact-string digit-boundary limitation: the API tokenizer records the first digit without a leading-space token marker, so a match may include a longer number ending in the queried digits. Dolma is a proxy, not GPT-2's training corpus.
 
 \section{Discussion}
 
@@ -231,7 +257,7 @@ I began by asking whether an addition circuit could explain the observed behavio
 
 I interpret these findings alongside prior mechanistic studies of arithmetic in pretrained models, including causal mediation, attention/MLP analyses, and heuristic-neuron accounts \cite{stolfo2023causal,yu2024cna,nikankin2025heuristics}. My measurements neither reproduce nor challenge those studies because they use different models and prompt/evaluation setups. The closest comparison by model family is the GPT-2 Small greater-than study, which validates a circuit for a different task \cite{hanna2023greater}. Studies of modular addition offer a complementary comparison using controlled training \cite{nanda2023progress,zhong2023clock}. I therefore present a model- and prompt-specific behavioral audit with an exploratory equal-operand contrast, not a general theory of how language models perform arithmetic.
 
-The most direct follow-up would test the post hoc round-number pattern in a new sample fixed in advance. It should balance round and non-round sums, include several unequal splits per target, and use all planned arithmetic templates. It should vary operand roundness and target roundness separately. I should retain prompt-level outputs, apply prespecified selection rules, and compare arithmetic with matched repetition controls using target-level inference. Causal interventions can follow; the present results do not identify a mechanism.
+The most direct follow-up would test the post hoc round-number pattern in a new sample fixed in advance. Before collecting scores, I should fix the target-selection, matching, exclusion, and analysis rules. Because $T=2a$ for equal operands, target roundness and equal-operand roundness cannot be varied independently within equal-split arithmetic prompts. At each fixed target, the study should compare the double with multiple unequal splits matched on operand endings and, where possible, tokenization properties, then balance target classes across the sample. A separate non-arithmetic prompt using the same candidate answer tokens could estimate target-token preferences. Together, these comparisons would help distinguish repetition, unequal-control composition, and answer-token baseline effects; they would not make target and equal-operand roundness independent within double prompts. The parity and decimal-ending patterns also motivate a test of periodic number features reported in other addition settings, but the current analyses do not identify such a representation \cite{zhou2024fourier,kantamneni2025trigonometry}. I should retain prompt-level outputs and use target-level inference. Causal interventions can follow; the present results do not identify a mechanism.
 
 \section{Limitations}
 
@@ -297,6 +323,24 @@ A.~Radford et~al.
 \newblock OpenAI technical report, 2019.
 \newblock \url{https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf}.
 
+\bibitem{razeghi2022frequency}
+Y.~Razeghi, R.~L. Logan IV, M.~Gardner, and S.~Singh.
+\newblock Impact of pretraining term frequencies on few-shot numerical reasoning.
+\newblock In \emph{Findings of the Association for Computational Linguistics: EMNLP 2022}, pages 840--854, 2022.
+\newblock \url{https://aclanthology.org/2022.findings-emnlp.59/}.
+
+\bibitem{liu2024infini}
+J.~Liu, S.~Min, L.~Zettlemoyer, Y.~Choi, and H.~Hajishirzi.
+\newblock Infini-gram: Scaling unbounded n-gram language models to a trillion tokens.
+\newblock arXiv:2401.17377, 2024.
+\newblock \url{https://arxiv.org/abs/2401.17377}.
+
+\bibitem{soldaini2024dolma}
+L.~Soldaini et~al.
+\newblock Dolma: An open corpus of three trillion tokens for language model pretraining research.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics}, pages 15725--15788, 2024.
+\newblock \url{https://aclanthology.org/2024.acl-long.840/}.
+
 \bibitem{stolfo2023causal}
 A.~Stolfo, Y.~Belinkov, and M.~Sachan.
 \newblock A mechanistic interpretation of arithmetic reasoning in language models using causal mediation analysis.
@@ -309,17 +353,29 @@ K.~Wang, A.~Variengien, A.~Conmy, B.~Shlegeris, and J.~Steinhardt.
 \newblock In \emph{International Conference on Learning Representations}, 2023.
 \newblock \url{https://arxiv.org/abs/2211.00593}.
 
+\bibitem{ye2024physics}
+T.~Ye, Z.~Xu, Y.~Li, and Z.~Allen-Zhu.
+\newblock Physics of language models: Part 2.1, grade-school math and the hidden reasoning process.
+\newblock arXiv:2407.20311, 2024.
+\newblock \url{https://arxiv.org/abs/2407.20311}.
+
 \bibitem{yu2024cna}
 Z.~Yu and S.~Ananiadou.
 \newblock Interpreting arithmetic mechanism in large language models through comparative neuron analysis.
 \newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing}, pages 3293--3306, 2024.
 \newblock \url{https://aclanthology.org/2024.emnlp-main.193/}.
 
-\bibitem{ye2024physics}
-T.~Ye, Z.~Xu, Y.~Li, and Z.~Allen-Zhu.
-\newblock Physics of language models: Part 2.1, grade-school math and the hidden reasoning process.
-\newblock arXiv:2407.20311, 2024.
-\newblock \url{https://arxiv.org/abs/2407.20311}.
+\bibitem{zhou2024fourier}
+T.~Zhou, D.~Fu, V.~Sharan, and R.~Jia.
+\newblock Pre-trained large language models use Fourier features to compute addition.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2024.
+\newblock \url{https://arxiv.org/abs/2406.03445}.
+
+\bibitem{kantamneni2025trigonometry}
+S.~Kantamneni and M.~Tegmark.
+\newblock Language models use trigonometry to do addition.
+\newblock arXiv:2502.00873, 2025.
+\newblock \url{https://arxiv.org/abs/2502.00873}.
 
 \bibitem{zhong2023clock}
 Z.~Zhong, Z.~Liu, M.~Tegmark, and J.~Andreas.
@@ -329,3 +385,4 @@ Z.~Zhong, Z.~Liu, M.~Tegmark, and J.~Andreas.
 
 \end{thebibliography}
 \end{document}
+
